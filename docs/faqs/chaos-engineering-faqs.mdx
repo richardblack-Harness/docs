@@ -1,0 +1,161 @@
+---
+title: Chaos Engineering (CE) FAQs
+---
+
+## General
+
+For an overview of Harness support for platforms, methodologies, and related technologies, go to [Supported platforms and technologies](https://developer.harness.io/docs/platform/platform-whats-supported).
+
+<AccordionGroup>
+  <Accordion title="How do I get the Instance ID or license ID with Harness SMP?">
+
+  Login using Admin privilege, and then navigate to **License** to find the **License ID**.
+
+  </Accordion>
+
+  <Accordion title="Can I run both serial and parallel faults while using Linux infrastructure?">
+
+  Currently, parallel fault experiments aren't supported for Linux.
+
+  </Accordion>
+
+  <Accordion title="How to add and manage a custom chaos hub?">
+
+  You can navigate to chaos hubs in the chaos module and select `+ New ChaosHub`, and fill in the details regarding your public or private hub. Ensure that you have chaos hub read or write permission enabled and a GitHub connector configured for the repository you are about to connect.
+  </Accordion>
+
+
+  <Accordion title="How do I connect to a private chaos hub?">
+
+  To connect to a private chaos hub repository, connect to a Harness GitHub connector through a Harness Delegate, or GitHub directly by providing your GitHub SSH key or Personal Access Token (PAT). Once this is done, you can select the connector when adding a chaos hub.
+
+  </Accordion>
+
+  <Accordion title="How are faults different from experiments?">
+
+  Faults refer to the failures that are injected into the target resource as part of an experiment. Whereas a chaos experiment is a set of different faults coupled together to achieve a desired chaos impact.
+  </Accordion>
+
+  <Accordion title="What are the possible reasons I can't see tunables in Tune Fault UI?">
+
+  Since the tuning of a chaos experiment is highly declarative, sometimes it may cause parsing issues, these may be the possible reasons:
+
+  - The step name of the fault and the template name might have been changed due to custom editing.
+  - The step name has been removed completely.
+  - The template definition has been erased.
+
+  </Accordion>
+
+  <Accordion title="How are probes useful in an experiment?">
+
+  A probe can help understand the underlying patterns and laws that govern the behavior of your systems, and you can use that understanding to predict or control their behavior. Probes can be used to test scenarios such as network partitioning, pod failures, and node failures, by adding additional checks, it can also be used to test the behavior of applications during such scenarios.
+
+  </Accordion>
+
+  <Accordion title="How is resilience score affected if a few of my probes fail?">
+
+  The weighted average of probe success percentage of each of the probe determines the value of the overall resilience score of the experiment. The value depends on the successful outcome of the probe criteria based on the type and mode selected. There are two possible values of probe success percentage for each of the probe criteria, either 0(if the criteria assertion fails) or 100(if the criteria assertion passes).
+
+  ```bash
+  Total Resilience for one single experiment = (Weight Given to that experiment * Probe Success Percentage)
+  ```
+  <Frame>
+  ![Resilience Score](https://developer.harness.io/assets/images/chaos-engineering-faq-resilience-score-3d4ea98814fafc8d5b873c9162584ddd.png)
+  </Frame>
+  </Accordion>
+
+  <Accordion title="I have trouble creating an experiment YAML from scratch, can I generate one?">
+
+  Yes, you can generate a YAML file by choosing the normal flow of creating an experiment (blank canvas or through a template), in the YAML/Visual toggle you can see a generated YAML based on the inputs provided by you. A generated YAML can also be downloaded after navigating to `Chaos Experiments` and clicking on `Download Experiments`.
+
+  Additionally you can also leverage Harness [Go SDK repository](https://github.com/harness/harness-go-sdk) and generate a template.
+  </Accordion>
+
+  <Accordion title="My issue is not mentioned here, how can I report it?">
+
+  To report an issue which is not mentioned here, head over to **Help** in Harness SaaS and click **Submit a ticket** and provide your feedback.
+  </Accordion>
+</AccordionGroup>
+
+## Features and capabilities
+
+<AccordionGroup>
+  <Accordion title="How do you inject chaos on managed cloud services?">
+
+  You can obtain the required permissions to inject chaos on respective cloud-services like [AWS permissions](https://developer.harness.io/docs/chaos-engineering/use-harness-ce/chaos-faults/aws/permissions),[Cloud foundry](https://developer.harness.io/docs/chaos-engineering/use-harness-ce/chaos-faults/cloud-foundry/permissions), and [GCP](https://developer.harness.io/docs/chaos-engineering/use-harness-ce/chaos-faults/gcp/security-configurations/prepare-secret-for-gcp).
+  </Accordion>
+
+  <Accordion title="Do you support chaos on [X] [AWS/GCP/Azure] service?">
+
+  Yes. For more information, go to [AWS chaos](https://developer.harness.io/docs/chaos-engineering/use-harness-ce/chaos-faults/aws/), [GCP chaos](https://developer.harness.io/docs/chaos-engineering/use-harness-ce/chaos-faults/gcp/), and [Azure chaos](https://developer.harness.io/docs/chaos-engineering/use-harness-ce/chaos-faults/azure/).
+  </Accordion>
+
+  <Accordion title="Can you simulate a Zone, Region Failover in [AWS/GCP/Azure]">
+
+  Yes. For more information, go to [ALB zone down](https://developer.harness.io/docs/chaos-engineering/use-harness-ce/chaos-faults/aws/alb-az-down), [CLB zone down](https://developer.harness.io/docs/chaos-engineering/use-harness-ce/chaos-faults/aws/clb-az-down), and so on.
+
+  </Accordion>
+
+  <Accordion title="Do you support staggered or staged increase of CPU/Memory resources within a Pod/Machine?">
+
+  Yes. For more information, go to [pod memory hog](https://developer.harness.io/docs/chaos-engineering/use-harness-ce/chaos-faults/kubernetes/pod/pod-memory-hog) and [pod CPU hog](https://developer.harness.io/docs/chaos-engineering/use-harness-ce/chaos-faults/kubernetes/pod/pod-cpu-hog) .
+  </Accordion>
+  <Accordion title="Do you support load-based chaos/can you generate load during chaos execution?">
+  Yes. For more information, go to [locust loadgen](https://developer.harness.io/docs/chaos-engineering/use-harness-ce/chaos-faults/load/locust-loadgen).
+  </Accordion>
+  <Accordion title="Do you support chaos on DataCenter infrastructure resources such as Switches, Loadbalancers, Hardware Encryption Devices etc.,?">
+
+  Yes, you can use [SSH chaos](https://developer.harness.io/docs/chaos-engineering/use-harness-ce/chaos-faults/ssh/ssh-chaos) to inject chaos on switches, load balancers, and so on.
+  </Accordion>
+  <Accordion title="Does the tool provide recommendations to fix weaknesses identified by Chaos Experimentation?">
+  No, Harness CE helps identify the failures in your application by injecting failures intentionally. This way, you can identify the failures and use other methods to address the issues identified using Harness CE.
+  </Accordion>
+  <Accordion title="What kind of Reporting is provided by the tool?">
+  Once you execute your chaos experiments, you can download the reports that describe the experiment details such as runs, infrastructure, resilience score, and so on. For more information, go to [resilience probes](https://developer.harness.io/docs/chaos-engineering/use-harness-ce/probes/), [alerts](https://developer.harness.io/docs/chaos-engineering/use-harness-ce/experiments/alert-integration) and [chaos dashboard](https://developer.harness.io/docs/chaos-engineering/use-harness-ce/dashboards/).
+  </Accordion>
+  <Accordion title="Can I deploy chaos infrastructure on an Openshift Cluster?">
+  Yes, you can deploy chaos infrastructure on OpenShift clusters and run chaos experiments using the SCCs that we provide.
+  </Accordion>
+  <Accordion title="Can we disrupt connection/network between any service in a cluster and an external service only & keep other connections intact without actually disrupting external service?">
+
+  Yes, you can use set the `DESTINATION_IPS` or `DESTINATION_HOSTS` tunabls in all network level chaos experiments. For example, to execute the network loss fault,
+
+  - Between the target app and cloud SQL, you can specify `DESTINATION_HOSTS` as **sqladmin.googleapis.com**.
+  - Between the target app and storage/GCS, you can specify `DESTINATION_HOSTS` as **storage.googleapis.com**.
+  - Between the target app and composer, you can specify `DESTINATION_HOSTS` as **composer.googleapis.com**.
+  </Accordion>
+</AccordionGroup>
+
+## Harness Delegate
+
+<Tip>
+**TIP**
+
+The FAQs below are based on Harness CE entities using [Harness Delegate](https://developer.harness.io/docs/chaos-engineering/use-harness-ce/infrastructures/types/ddcr#what-is-ddcr).
+</Tip>
+
+<AccordionGroup>
+  <Accordion title="Do you support On-Premise Harness Control Plane?">
+  Yes, Harness CE supports the self-managed enterprise edition (SME, also known as self-managed platform or SMP). Depending on the version of Harness CE (SaaS or Self-Managed Platform), the control plane is hosted by Harness (for SaaS) or within your domain (for example, harness.your-domain.io). Go to [SMP](https://developer.harness.io/docs/chaos-engineering/getting-started/smp/) for more information.
+  </Accordion>
+  <Accordion title="Does chaos use the Harness Delegate or does it need a separate agent?">
+  Harness CE uses the Harness Delegate to execute chaos experiments, which you can leverage to:
+
+  - Auto-create chaos experiments.
+  - Improve execution speed of chaos experiments (up to 5 times).
+  - Better control over chaos experiments by facilitating advanced tunables.
+  - Gain insights into application-level resilience scores.
+
+  Go to [Harness Delegate](https://developer.harness.io/docs/chaos-engineering/use-harness-ce/infrastructures/types/ddcr#what-is-ddcr) for more information.
+  </Accordion>
+  <Accordion title="What ports are necessary to be opened in the org's firewall rules to access the Harness Control Plane from the user environment?">
+  You can access the Harness control plane from the user environment with outbound connectivity over HTTPS using port 443. Go to [permissions and ports](https://developer.harness.io/docs/platform/references/permissions-and-ports-for-harness-connections) and [FAQs](https://developer.harness.io/kb/chaos-engineering/chaos-engineering-faq) for more details.
+  </Accordion>
+  <Accordion title="What permissions are necessary to run the Chaos Agent on users' Kubernetes clusters / Linux / Windows Machines?">
+  Permissions required to execute chaos faults are different for different platforms. Go to:
+
+  - [Kubernetes permissions](https://developer.harness.io/docs/chaos-engineering/use-harness-ce/chaos-faults/kubernetes/tkgi/Requirements);
+  - [AWS permissions](https://developer.harness.io/docs/chaos-engineering/use-harness-ce/chaos-faults/aws/permissions); and
+  - [Linux permissions](https://developer.harness.io/docs/chaos-engineering/use-harness-ce/chaos-faults/linux/permissions), respectively.
+  </Accordion>
+</AccordionGroup>

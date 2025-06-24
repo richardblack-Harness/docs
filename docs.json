@@ -1,102 +1,767 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "Mint Starter Kit",
+  "theme": "maple",
+  "name": "Harness",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#00ADE4",
+    "light": "#00ADE4",
+    "dark": "#00ADE4"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon.png",
+  "appearance": {
+    "default": "dark"
+  },
+  "background": {
+    "decoration": "gradient",
+    "color": {
+      "dark": "#070707"
+    }
+  },
+  "fonts": {
+    "body": {
+      "family": "Geist"
+    }
+  },
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
-        "groups": [
+        "tab": "Home",
+        "pages": ["index"]
+      },
+      {
+        "tab": "Documentation",
+        "dropdowns": [
           {
-            "group": "Get Started",
-            "pages": [
-              "index",
-              "quickstart",
-              "development"
+            "dropdown": "Platform",
+            "icon": "code",
+            "anchors": [
+              {
+                "anchor": "Platform",
+                "pages": [
+                  "docs/platform",
+                  {
+                    "group": "Get Started with Harness Platform",
+                    "pages": [
+                      "docs/category/get-started-with-harness",
+                      "docs/platform/get-started/key-concepts",
+                      "docs/platform/get-started/onboarding-guide",
+                      "docs/platform/get-started/release-status"
+                    ]
+                  },
+                  "docs/platform/application-map"
+                ]
+              },
+              {
+                "anchor": "Release Notes",
+                "icon": "clipboard",
+                "pages": [
+                  "release-notes/release-notes",
+                  "release-notes/platform"
+                ]
+              },
+              {
+                "anchor": "Roadmap",
+                "icon": "map",
+                "pages": ["roadmap/platform"]
+              },
+              {
+                "anchor": "API Reference",
+                "icon": "code",
+                "groups": [
+                  {
+                    "group": "Accounts",
+                    "pages": [
+                      "api-reference/accounts/gets-an-account",
+                      "api-reference/accounts/checks-if-immutable-delegate-is-enabled-for-account",
+                      "api-reference/accounts/license-update-from-ui",
+                      "api-reference/accounts/update-account-name",
+                      "api-reference/accounts/update-default-experience"
+                    ]
+                  },
+                  {
+                    "group": "Account Banner",
+                    "pages": [
+                      "api-reference/account-banner/retrieves-the-list-of-banners-in-account-scope",
+                      "api-reference/account-banner/creates-a-new-banner-in-account-scope",
+                      "api-reference/account-banner/validate-if-the-specified-banner-identifier-is-available-for-use-in-account-scope",
+                      "api-reference/account-banner/check-for-a-current-account-max-5-banners-are-enabled-or-not",
+                      "api-reference/account-banner/updates-the-specified-banner-in-account-scope",
+                      "api-reference/account-banner/deletes-the-specified-banner-in-account-scope",
+                      "api-reference/account-banner/return-active-banners"
+                    ]
+                  },
+                  {
+                    "group": "AccountSetting",
+                    "pages": [
+                      "api-reference/accountsetting/get-the-accountsetting-by-accountidentifier",
+                      "api-reference/accountsetting/updates-account-settings",
+                      "api-reference/accountsetting/get-the-accountsetting-by-accountidentifier-1"
+                    ]
+                  }
+                ]
+              }
             ]
           },
           {
-            "group": "Essentials",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
+            "dropdown": "Code Repository",
+            "icon": "git-alt",
+            "anchors": [
+              {
+                "anchor": "Code Repository",
+                "icon": "git-alt",
+                "pages": [
+                  "docs/code-repository",
+                  "docs/code-repository/code-supported"
+                ]
+              },
+              {
+                "anchor": "Release Notes",
+                "icon": "clipboard",
+                "pages": ["release-notes/code-repository"]
+              },
+              {
+                "anchor": "RoadMap",
+                "icon": "map",
+                "pages": ["roadmap/code-repository"]
+              },
+              {
+                "anchor": "API Reference",
+                "icon": "code",
+                "groups": [
+                  {
+                    "group": "repository",
+                    "pages": [
+                      "api-reference/repository/list-repositories",
+                      "api-reference/repository/create-repository",
+                      "api-reference/repository/get-repository",
+                      "api-reference/repository/soft-delete-repository",
+                      "api-reference/repository/update-repository",
+                      "api-reference/repository/download-repo-in-archived-format",
+                      "api-reference/repository/get-git-blame",
+                      "api-reference/repository/list-branches",
+                      "api-reference/repository/create-branch",
+                      "api-reference/repository/get-branch",
+                      "api-reference/repository/delete-branch",
+                      "api-reference/repository/validate-code-owners-file",
+                      "api-reference/repository/list-commits",
+                      "api-reference/repository/commit-files",
+                      "api-reference/repository/get-commit",
+                      "api-reference/repository/get-raw-git-diff-of-a-commit",
+                      "api-reference/repository/get-commit-divergence",
+                      "api-reference/repository/get-content-of-a-file",
+                      "api-reference/repository/update-default-branch",
+                      "api-reference/repository/get-diff-stats",
+                      "api-reference/repository/get-raw-diff",
+                      "api-reference/repository/get-raw-diff-1",
+                      "api-reference/repository/check-mergeability",
+                      "api-reference/repository/get-commit-details",
+                      "api-reference/repository/list-all-paths",
+                      "api-reference/repository/purge-repository",
+                      "api-reference/repository/get-raw-file-content",
+                      "api-reference/repository/rebase-a-branch-relative-to-another-branch-or-a-commit",
+                      "api-reference/repository/restore-repository",
+                      "api-reference/repository/get-general-settings",
+                      "api-reference/repository/update-general-settings",
+                      "api-reference/repository/get-security-settings",
+                      "api-reference/repository/update-security-settings",
+                      "api-reference/repository/squashes-commits-in-a-branch-relative-to-another-branch-or-a-commit",
+                      "api-reference/repository/get-repository-summary",
+                      "api-reference/repository/list-tags",
+                      "api-reference/repository/create-tag",
+                      "api-reference/repository/delete-tag",
+                      "api-reference/repository/import-repository"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "dropdown": "Continuous Integration",
+            "icon": "link",
+            "anchors": [
+              {
+                "anchor": "Continuous Integration",
+                "icon": "link",
+                "pages": [
+                  "docs/continuous-integration",
+                  {
+                    "group": "New to Harness CI?",
+                    "pages": [
+                      "docs/continuous-integration/get-started/key-concepts"
+                    ]
+                  }
+                ]
+              },
+              {
+                "anchor": "Release Notes",
+                "icon": "clipboard",
+                "pages": ["release-notes/continuous-integration"]
+              },
+              {
+                "anchor": "Roadmap",
+                "icon": "map",
+                "pages": ["roadmap/continuous-integration"]
+              },
+              {
+                "anchor": "API Reference",
+                "icon": "code",
+                "pages": [
+                  {
+                    "group": "integration",
+                    "pages": [
+                      "api-reference/integration/create-integration",
+                      "api-reference/integration/configure-repos-in-your-integration",
+                      "api-reference/integration/add-repos-in-your-integration",
+                      "api-reference/integration/delete-integration"
+                    ]
+                  },
+                  {
+                    "group": "integrationConfig",
+                    "pages": [
+                      "api-reference/integrationconfig/get-integrations-config"
+                    ]
+                  },
+                  {
+                    "group": "Integration Step Config",
+                    "pages": [
+                      "api-reference/integration-step-config/integration-step-config-for-account",
+                      "api-reference/integration-step-config/integration-step-config-for-project",
+                      "api-reference/integration-step-config/integration-step-config-for-org"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "dropdown": "AI Test Automation",
+            "icon": "code",
+            "anchors": [
+              {
+                "anchor": "AI Test Automation",
+                "icon": "code",
+                "pages": [
+                  "docs/ai-test-automation",
+                  {
+                    "group": "New to AI Test Automation",
+                    "pages": [
+                      "docs/ai-test-automation/get-started/overview"
+                    ]
+                  },
+                  {
+                    "group": "Best Practices & Resources",
+                    "pages": [
+                      "docs/ai-test-automation/best-practices/best-practices-for-ai-commands"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "dropdown": "Artifact Registry",
+            "icon": "box",
+            "anchors": [
+              {
+                "anchor": "Artifact Registry",
+                "icon": "box",
+                "pages": [
+                  "docs/artifact-registry",
+                  {
+                    "group": "New to Artifact Registry?",
+                    "pages": ["docs/artifact-registry/get-started/overview"]
+                  }
+                ]
+              },
+              {
+                "anchor": "API Reference",
+                "icon": "code",
+                "pages": [
+                  {
+                    "group": "Artifact",
+                    "pages": [
+                      "api-reference/artifact/list-all-artifacts",
+                      "api-reference/artifact/list-all-artifacts-1",
+                      "api-reference/artifact/artifact-detail-component-view",
+                      "api-reference/artifact/artifact-detail-deployment-view",
+                      "api-reference/artifact/artifact-details"
+                    ]
+                  },
+                  {
+                    "group": "Docker Artifacts",
+                    "pages": [
+                      "api-reference/docker-artifacts/describe-docker-artifact-detail",
+                      "api-reference/docker-artifacts/describe-docker-artifact-integration-detail",
+                      "api-reference/docker-artifacts/describe-docker-artifact-layers",
+                      "api-reference/docker-artifacts/describe-docker-artifact-manifest",
+                      "api-reference/docker-artifacts/describe-docker-artifact-manifests"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "dropdown": "Continuous Delivery & GitOps",
+            "icon": "link",
+            "anchors": [
+              {
+                "anchor": "Continuous Delivery & GitOps",
+                "icon": "link",
+                "pages": [
+                  "docs/continuous-delivery",
+                  "docs/continuous-delivery/toolchain-policy"
+                ]
+              },
+              {
+                "anchor": "Release Notes",
+                "icon": "clipboard",
+                "pages": ["release-notes/continuous-delivery"]
+              },
+              {
+                "anchor": "Roadmap",
+                "icon": "map",
+                "pages": ["roadmap/continuous-delivery"]
+              },
+              {
+                "anchor": "API Reference",
+                "icon": "code",
+                "href": "https://apidocs.harness.io/"
+              }
+            ]
+          },
+          {
+            "dropdown": "Database DevOps",
+            "icon": "database",
+            "anchors": [
+              {
+                "anchor": "Database DevOps",
+                "icon": "database",
+                "pages": ["docs/database-devops"]
+              },
+              {
+                "anchor": "Release Notes",
+                "icon": "clipboard",
+                "pages": ["release-notes/database-devops"]
+              },
+              {
+                "anchor": "API Reference",
+                "icon": "code",
+                "href": "https://apidocs.harness.io/"
+              }
+            ]
+          },
+          {
+            "dropdown": "Infrastructure as Code Management",
+            "icon": "code",
+            "anchors": [
+              {
+                "anchor": "Infrastructure as Code Management",
+                "icon": "code",
+                "pages": [
+                  {
+                    "group": "New to IaCM?",
+                    "pages": [
+                      "docs/infra-as-code-management/get-started/overview"
+                    ]
+                  }
+                ]
+              },
+              {
+                "anchor": "Release Notes",
+                "icon": "clipboard",
+                "pages": ["release-notes/infrastructure-as-code-management"]
+              },
+              {
+                "anchor": "Roadmap",
+                "icon": "map",
+                "pages": ["roadmap/infrastructure-as-code-management"]
+              },
+              {
+                "anchor": "API Reference",
+                "icon": "code",
+                "href": "https://apidocs.harness.io/"
+              }
+            ]
+          },
+          {
+            "dropdown": "Feature Flags",
+            "icon": "flag",
+            "anchors": [
+              {
+                "anchor": "Feature Flags",
+                "icon": "flag",
+                "pages": ["docs/feature-flags/smp-ff-roadmap"]
+              },
+              {
+                "anchor": "Release Notes",
+                "icon": "clipboard",
+                "pages": ["release-notes/feature-flags"]
+              },
+              {
+                "anchor": "Roadmap",
+                "icon": "map",
+                "pages": ["roadmap/feature-flags"]
+              },
+              {
+                "anchor": "API Reference",
+                "icon": "code",
+                "pages": [
+                  {
+                    "group": "Feature Flags",
+                    "pages": [
+                      "api-reference/feature-flags/returns-all-feature-flags-for-the-project",
+                      "api-reference/feature-flags/creates-a-feature-flag",
+                      "api-reference/feature-flags/returns-a-feature-flag",
+                      "api-reference/feature-flags/updates-a-feature-flag",
+                      "api-reference/feature-flags/delete-a-feature-flag",
+                      "api-reference/feature-flags/updates-a-feature-flag-1",
+                      "api-reference/feature-flags/return-a-list-of-dependant-flags",
+                      "api-reference/feature-flags/restore-a-feature-flag"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "dropdown": "Cloud Cost Management",
+            "icon": "cloud",
+            "anchors": [
+              {
+                "anchor": "Cloud Cost Management",
+                "icon": "cloud",
+                "pages": [
+                  {
+                    "group": "CCM Resources",
+                    "pages": ["docs/cloud-cost-management/ccm-auditing"]
+                  }
+                ]
+              },
+              {
+                "anchor": "Release Notes",
+                "icon": "clipboard",
+                "pages": ["release-notes/cloud-cost-management"]
+              },
+              {
+                "anchor": "Roadmap",
+                "icon": "map",
+                "pages": ["roadmap/cloud-cost-management"]
+              },
+              {
+                "anchor": "API Reference",
+                "icon": "code",
+                "pages": [
+                  {
+                    "group": "Cloud Cost Anomalies",
+                    "pages": [
+                      "/api-reference/cloud-cost-anomalies/list-anomalies",
+                      "/api-reference/cloud-cost-anomalies/returns-the-list-of-distinct-values-for-all-the-specified-anomaly-fields",
+                      "/api-reference/cloud-cost-anomalies/list-anomalies-1",
+                      "/api-reference/cloud-cost-anomalies/list-ignore-list-anomalies",
+                      "/api-reference/cloud-cost-anomalies/list-anomalies-for-perspective",
+                      "/api-reference/cloud-cost-anomalies/report-anomaly-feedback"
+                    ]
+                  },
+                  {
+                    "group": "Cloud Cost BI Dashboards",
+                    "pages": [
+                      "/api-reference/cloud-cost-bi-dashboards/list-all-the-bi-dashboards-for-ccm"
+                    ]
+                  },
+                  {
+                    "group": "Cloud Cost Budget Groups",
+                    "pages": [
+                      "/api-reference/cloud-cost-budget-groups/fetch-budget-group-details",
+                      "/api-reference/cloud-cost-budget-groups/update-an-existing-budget-group",
+                      "/api-reference/cloud-cost-budget-groups/delete-a-budget-group",
+                      "/api-reference/cloud-cost-budget-groups/get-aggregated-amount-for-given-budget-groupsbudgets",
+                      "/api-reference/cloud-cost-budget-groups/get-list-of-budget-and-budget-group-summaries",
+                      "/api-reference/cloud-cost-budget-groups/list-all-the-budget-groups",
+                      "/api-reference/cloud-cost-budget-groups/create-a-budget-group"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "dropdown": "Security Testing Orchestration",
+            "icon": "shield",
+            "anchors": [
+              {
+                "anchor": "Security Testing Orchestration",
+                "icon": "shield",
+                "pages": ["docs/security-testing-orchestration"]
+              },
+              {
+                "anchor": "Release Notes",
+                "icon": "clipboard",
+                "pages": ["release-notes/security-testing-orchestration"]
+              },
+              {
+                "anchor": "Roadmap",
+                "icon": "map",
+                "pages": ["roadmap/security-testing-orchestration"]
+              },
+              {
+                "anchor": "API Reference",
+                "icon": "code",
+                "href": "https://apidocs.harness.io/"
+              }
+            ]
+          },
+          {
+            "dropdown": "Supply Chain Security",
+            "icon": "box",
+            "anchors": [
+              {
+                "anchor": "Supply Chain Security",
+                "icon": "box",
+                "pages": ["docs/software-supply-chain-assurance"]
+              },
+              {
+                "anchor": "Release Notes",
+                "icon": "clipboard",
+                "pages": ["release-notes/software-supply-chain-assurance"]
+              },
+              {
+                "anchor": "Roadmap",
+                "icon": "map",
+                "pages": ["roadmap/software-supply-chain-assurance"]
+              },
+              {
+                "anchor": "API Reference",
+                "icon": "code",
+                "href": "https://apidocs.harness.io/"
+              }
+            ]
+          },
+          {
+            "dropdown": "Chaos Engineering",
+            "icon": "bolt",
+            "anchors": [
+              {
+                "anchor": "Chaos Engineering",
+                "icon": "bolt",
+                "pages": ["docs/chaos-engineering"]
+              },
+              {
+                "anchor": "Release Notes",
+                "icon": "clipboard",
+                "pages": ["release-notes/chaos-engineering"]
+              },
+              {
+                "anchor": "Roadmap",
+                "icon": "map",
+                "pages": ["roadmap/chaos-engineering"]
+              },
+              {
+                "anchor": "API Reference",
+                "icon": "code",
+                "href": "https://apidocs.harness.io/"
+              }
+            ]
+          },
+          {
+            "dropdown": "Incident Response",
+            "icon": "bolt",
+            "anchors": [
+              {
+                "anchor": "Incident Response",
+                "icon": "bolt",
+                "pages": ["docs/incident-response"]
+              },
+              {
+                "anchor": "Roadmap",
+                "icon": "map",
+                "pages": ["roadmap/incident-response"]
+              },
+              {
+                "anchor": "API Reference",
+                "icon": "code",
+                "href": "https://apidocs.harness.io/"
+              }
+            ]
+          },
+          {
+            "dropdown": "Service Reliability Management",
+            "icon": "shield",
+            "anchors": [
+              {
+                "anchor": "Service Reliability Management",
+                "icon": "shield",
+                "pages": ["docs/service-reliability-management"]
+              },
+              {
+                "anchor": "Release Notes",
+                "icon": "clipboard",
+                "pages": ["release-notes/service-reliability-management"]
+              },
+              {
+                "anchor": "Roadmap",
+                "icon": "map",
+                "pages": ["roadmap/service-reliability-management"]
+              },
+              {
+                "anchor": "API Reference",
+                "icon": "code",
+                "href": "https://apidocs.harness.io/"
+              }
+            ]
+          },
+          {
+            "dropdown": "Internal Developer Portal",
+            "icon": "code",
+            "anchors": [
+              {
+                "anchor": "Internal Developer Portal",
+                "icon": "code",
+                "pages": ["docs/internal-developer-portal/overview"]
+              },
+              {
+                "anchor": "Release Notes",
+                "icon": "clipboard",
+                "pages": ["release-notes/internal-developer-portal"]
+              },
+              {
+                "anchor": "Roadmap",
+                "icon": "map",
+                "pages": ["roadmap/internal-developer-portal"]
+              },
+              {
+                "anchor": "API Reference",
+                "icon": "code",
+                "href": "https://apidocs.harness.io/"
+              }
+            ]
+          },
+          {
+            "dropdown": "Cloud Development Environments",
+            "icon": "cloud",
+            "anchors": [
+              {
+                "anchor": "Cloud Development Environments",
+                "icon": "cloud",
+                "pages": ["docs/cloud-development-environments/overview"]
+              },
+              {
+                "anchor": "Release Notes",
+                "icon": "clipboard",
+                "pages": ["release-notes/cloud-development-environments"]
+              },
+              {
+                "anchor": "API Reference",
+                "icon": "code",
+                "href": "https://apidocs.harness.io/"
+              }
+            ]
+          },
+          {
+            "dropdown": "Software Engineering Insights",
+            "icon": "screwdriver-wrench",
+            "anchors": [
+              {
+                "anchor": "Software Engineering Insights",
+                "icon": "screwdriver-wrench",
+                "pages": [
+                  "docs/software-engineering-insights/propelo-end-of-life"
+                ]
+              },
+              {
+                "anchor": "Release Notes",
+                "icon": "clipboard",
+                "pages": ["release-notes/software-engineering-insights"]
+              },
+              {
+                "anchor": "Roadmap",
+                "icon": "map",
+                "pages": ["roadmap/sei"]
+              },
+              {
+                "anchor": "API Reference",
+                "icon": "code",
+                "href": "https://apidocs.harness.io/"
+              }
+            ]
+          },
+          {
+            "dropdown": "Self-Managed Enterprise Edition",
+            "icon": "building",
+            "anchors": [
+              {
+                "anchor": "Self-Managed Enterprise Edition",
+                "icon": "building",
+                "pages": [
+                  "docs/self-managed-enterprise-edition/reference-architecture"
+                ]
+              },
+              {
+                "anchor": "Release Notes",
+                "icon": "clipboard",
+                "pages": ["release-notes/self-managed-enterprise-edition"]
+              },
+              {
+                "anchor": "API Reference",
+                "icon": "code",
+                "href": "https://apidocs.harness.io/"
+              }
+            ]
+          },
+          {
+            "dropdown": "Open Source",
+            "icon": "code",
+            "anchors": [
+              {
+                "anchor": "Open Source",
+                "icon": "code",
+                "pages": ["docs/open-source/overview"]
+              }
             ]
           }
         ]
       },
       {
-        "tab": "API Reference",
-        "groups": [
-          {
-            "group": "API Documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint Examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
-            ]
-          }
-        ]
+        "tab": "FAQs",
+        "pages": ["docs/faqs/chaos-engineering-faqs"]
+      },
+      {
+        "tab": "Troubleshooting",
+        "pages": ["docs/troubleshooting"]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "dark": "/logo/dark.svg",
+    "href": "https://www.harness.io/"
   },
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "Contact us",
+        "href": "https://www.harness.io/company/contact-sales"
+      },
+      {
+        "label": "Sign up",
+        "href": "https://app.harness.io/auth/#/signup?utm_source=harness_io&utm_medium=cta&utm_campaign=platform&utm_content=main_nav"
       }
+     
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Sign in",
+      "href": "https://app.harness.io/auth/#/signin?utm_source=harness_io&utm_medium=cta&utm_campaign=platform&utm_content=main_nav"
     }
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "github": "https://github.com/harness/drone",
+      "linkedin": "https://www.linkedin.com/company/harnessinc/",
+      "facebook": "https://www.facebook.com/harnessinc/",
+      "instagram": "https://www.instagram.com/harness.io/",
+      "x": "https://x.com/harnessio"
     }
   }
 }

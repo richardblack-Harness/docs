@@ -1,0 +1,40 @@
+---
+title : "Service Reliability Management release notes"
+description : "These release notes describe recent changes to Harness Service Reliability Management (NextGen SaaS)."
+---
+
+<Note>
+### About Harness Release Notes
+
+- **Progressive deployment:** Harness deploys changes to Harness SaaS clusters on a progressive basis. This means that the features described in these release notes may not be immediately available in your cluster. To identify the cluster that hosts your account, go to your **Account Overview** page in Harness. In the new UI, go to **Account Settings**, **Account Details**, **General**, **Account Details**, and then **Platform Service Versions**.
+- **Security advisories:** Harness publishes security advisories for every release. Go to the [Harness Trust Center](https://trust.harness.io/?itemUid=c41ff7d5-98e7-4d79-9594-fd8ef93a2838&source=documents_card) to request access to the security advisories.
+- **More release notes:** Go to [Harness Release Notes](https://developer.harness.io/release-notes) to explore all Harness release notes, including module, delegate, Self-Managed Enterprise Edition, and FirstGen release notes.
+</Note>
+
+<Update label="April 2024" description="Version 1.5.0">
+
+#### Fixed issues
+
+- Fixed an issue where the **View Deployment** button in the change impact screen was not leading the user to the relevant page. (CHAOS-4517)
+- Fixed an issue where adding a new SLO to a composite SLO by editing it would re-calculate the weightage and override any value entered by the user. Now, the weights are calculated automatically only when a new composite SLO is created.(CHAOS-4534)
+
+</Update>
+
+<Update label="November 2023" description="Version 1.7.0">
+
+#### Fixed issues
+
+- The Add Annotation drawer was opening even when clicking near the **Add Annotation** button. This issue has been resolved. Now, the Add Annotation drawer opens only when clicking on the **Add Annotation** button. (SRM-16062)
+- The Add SLO screen wrongly indicated that a maximum of 20 SLOs could be selected, even though selecting a maximum of 30 SLOs was allowed. For example, when 30 SLOs were selected, it displayed "30/20 selected." This issue has been resolved. Now, the UI correctly indicates that a maximum of 30 SLOs can be selected. (SRM-16078)
+- On the SLO tab, the **Clear Filter** option was not displayed when a filter was applied to the **Evaluation** field. This issue has been resolved. Now, the **Clear Filter** option is displayed when a filter is applied to the **Evaluation** field. (SRM-16079)
+
+</Update>
+
+<Update label="November 2023" description="Version 1.6.1">
+
+#### New features and enhancements
+
+- A new search functionality for the service and environment filters drop-down on the Changes page has been introduced. The filters now display a **Search** option when the drop-down list contains more than 10 options. (SRM-15946)
+- The maximum number of simple SLOs that can contribute to a composite SLO has been increased from 20 to 30. (SRM-15972)
+- Because a majority of change sources are now configured automatically, the behavior on the Change Impact screen has been modified. Now, when no change event is found in the selected time range, the "No change event" message is displayed instead of "Configure change source". (SRM-15985)
+</Update>

@@ -1,0 +1,90 @@
+---
+title: "Code Repository release notes"
+description: "These release notes describe recent changes to Harness Code Repository."
+sidebarTitle: "Code Repository"
+---
+
+<Note>
+### About Harness Release Notes
+
+- **Progressive deployment:** Harness deploys changes to Harness SaaS clusters on a progressive basis. This means that the features described in these release notes may not be immediately available in your cluster. To identify the cluster that hosts your account, go to your **Account Overview** page in Harness. In the new UI, go to **Account Settings**, **Account Details**, **General**, **Account Details**, and then **Platform Service Versions**.
+- **Security advisories:** Harness publishes security advisories for every release. Go to the [Harness Trust Center](https://trust.harness.io/?itemUid=c41ff7d5-98e7-4d79-9594-fd8ef93a2838&source=documents_card) to request access to the security advisories.
+- **More release notes:** Go to [Harness Release Notes](https://developer.harness.io/release-notes) to explore all Harness release notes, including module, delegate, Self-Managed Enterprise Edition, and FirstGen release notes.
+</Note>
+
+<Update label="January 2025" description="Version 1.28.2">
+
+### New features and enhancements
+
+- Added Archive repository functionality
+- Added networking and API support for SSH with git repositories
+- Add checkbox for comment events and review events
+- Support for Harness SMP - Self Managed Platform
+- Support for Jira Cloud integration to link commits with issues
+- List Status Checks for account/org/project
+
+### Fixed issues
+
+- We need org view and edit permissions in order to create rules/labels on the account level
+</Update>
+
+<Update label="December 2024" description="Version 1.26.2">
+
+### New features and enhancements
+
+- Added Recreate Replica API.
+- Added **Rules API** for projects, organizations, and accounts.
+- Added `go-get` middleware in the Git router.
+- Updated Swagger for the **Delete PR Branch** API.
+- Added scope info to webhooks.
+- Ignored "not found" errors when deleting repositories.
+- Added time and author filter parameters to the **List Commits** page.
+- Updated Webhook for **Code Comments** to include all comment types.
+- Renamed the **Review Submitted** Webhook Trigger.
+
+### Fixed issues
+
+- Streamlined the **list-paths** Git operation to avoid message limits.
+- Handled synchronization of an empty repository with a non-'main' default branch.
+- Moved generated UI URLs to the new navigation.
+- Fixed an issue with label unassign activity.
+- Used space permissions in label and rules controllers.
+- Changed space permissions for space rules to repository permissions.
+- Resolved mentioned user IDs in email notifications.
+- Fixed sanitization for the Webhook Trigger: **Pull Request Review Submitted**.
+- Fixed string search issues involving '\_' or '%'.
+- Improved PR activity messages for force pushes.
+- Included the PR author in the browser parameter in the PR listing page.
+- Replaced `TypesRepository` with `RepoRepositoryOutput` in Swagger.
+</Update>
+
+<Update label="November 2024" description="Version 1.25.3">
+
+### New features and enhancements
+
+- Added support for **Labels** in the Migration Tool.
+- Added account, organization, and project webhooks.
+- Added an Audit Log for bypassed requests.
+- Separated CODE Repo **Create/Edit** into distinct permissions.
+- Added Code Owners status in the PR overview page.
+- Added a new webhook type: **review\_submitted**.
+- Added a new webhook event for label assignment.
+- Added an API for space-level webhook creation.
+- Added support for **Code Owners** user groups.
+- Updated error messages for forbidden access cases.
+- Added an API to squash commits on a branch.
+- Updated UI labels for the audit service.
+- Added audit logging changes for commit, merge, branch creation, and deletion.
+
+### Fixed issues
+
+- Increased ingress limits.
+- Added environment variables to enable indexing and searching of large files.
+- Fixed Swagger documentation for webhook execution and added branch restore.
+- Updated code URL API.
+- Fixed status checks displaying incorrect timestamps.
+- Fixed an issue where resource names were missing.
+- Handled errors for import-progress API failures.
+- Expanded detection of repository not found cases in Git error parsing.
+- Handled import-progress API responses when importing repositories via the migrator.
+</Update>

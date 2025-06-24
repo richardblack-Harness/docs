@@ -1,0 +1,180 @@
+---
+title: "Self-Managed Enterprise Edition release notes"
+description: "These release notes describe recent changes to Harness Self-Managed Enterprise Edition, NextGen."
+sidebarTitle: "Self-Managed Enterprise Edition"
+---
+
+<Note>
+### About Harness Release Notes
+
+- **Security advisories:** Harness publishes security advisories for every release. Go to the [Harness Trust Center](https://trust.harness.io/?itemUid=c41ff7d5-98e7-4d79-9594-fd8ef93a2838&source=documents_card) to request access to the security advisories.
+- **More release notes:** Go to [Harness Release Notes](https://developer.harness.io/release-notes) to explore all Harness release notes, including module, delegate, FirstGen Self-Managed Enterprise Edition, and FirstGen release notes.
+</Note>
+<Note>
+### MongoDB Upgrade to Version 6.x in SMP Environments
+
+With MongoDB 5 reaching end-of-life (EOL), upgrading to MongoDB 6.x is recommended for customers using an in-cluster MongoDB instance. This upgrade mitigates known CVEs and aligns with MongoDB’s recommended upgrade path.
+
+#### MongoDB Version History:
+
+- MongoDB 4.4 was used in versions 0.16.x.
+- MongoDB 5.0 was utilized from versions 0.17.x to 0.21.x.
+- MongoDB 6.0 is available from version 0.22.x onwards.
+
+#### Upgrade Path
+
+1. Upgrade to at least SMP 0.17.0 if you are running 0.16.0 or below version. This is required because Mongo doesn’t allow direct upgrade from Mongo 4.0 to Mongo 6.0
+2. Upgrade to 0.22.0 or above.
+
+#### Harness-Specific Details
+
+1. **Helm Users:**
+- A job has been introduced to handle the FCV upgrade automatically. This job runs pre-upgrade checks and upgrades FCV to match the server version.
+2. **ArgoCD Users:**
+- For ArgoCD users, run the FCV upgrade job manually before performing the main upgrade.
+
+#### MongoDB FCV Upgrade Job
+
+To run FCV upgrade manually (required for ArgoCD users), include this job definition: (mongo-preupgradejob)\[[https://raw.githubusercontent.com/harness/helm-charts/refs/heads/main/src/harness/templates/mongo-preupgradejob.yaml](https://raw.githubusercontent.com/harness/helm-charts/refs/heads/main/src/harness/templates/mongo-preupgradejob.yaml)\] This job runs as a pre-upgrade hook to ensure FCV is compatible with the MongoDB server version.
+
+#### Configuration
+
+To disable the upgrade job if a manual FCV upgrade is preferred, use the following setting in the override file:
+
+```bash
+upgrades:
+  mongoFCVUpgrade:
+    enabled: false
+```
+</Note>
+
+### Breaking change - Ingress
+
+<Warning>
+**Important upgrade instructions for versions 0.17.x, 0.18.x, 0.19.x, 0.20.x, 0.21.x, 0.22.x, 0.23.x and 0.24.x**
+
+When upgrading to SMP versions 0.17.x and above, the installation may fail if you have any admission webhooks configured for Ingress that do not permit Ingress objects with different names but identical paths. To prevent installation issues, please follow these steps before proceeding with the upgrade:
+
+1. Download the `update-ingress-objects.sh` script from this URL: [update-ingress-objects.sh](https://raw.githubusercontent.com/harness/helm-charts/main/src/harness/scripts/update-ingress-objects.sh).
+
+```bash
+# Using curl
+curl -s https://raw.githubusercontent.com/harness/helm-charts/main/src/harness/scripts/update-ingress-objects.sh -o update-ingress-objects.sh
+chmod +x update-ingress-objects.sh
+./update-ingress-objects.sh
+```
+
+2. The script will prompt you to enter the namespace where Harness is installed.
+3. You will then be asked to provide the version you are upgrading to. For instance, if you are upgrading to Harness 0.21.0, you should input 0.21.0.
+4. For versions 0.21.x and above, you will be asked to enter the release name as well. You can check release name by running 'helm ls -n $NAMESPACE'
+5. The script will automatically update the Ingress objects as needed.
+
+Note: Ensure you have access to the Kubernetes cluster where Harness is running and have the necessary permissions to GET, DELETE, and APPLY Ingress objects.
+</Warning>
+
+### Breaking change - Minio
+
+<Warning>
+**Important upgrade instructions for patch releases 0.15.1, 0.14.6, 0.13.4, and 0.12.1**
+
+If you are currently on version 0.12.0, you must follow the applicable upgrade process below to upgrade your version to the latest stable release, 0.12.1.
+
+If you are currently on version 0.13.0, 0.13.1, 0.13.2, or 0.13.3, you must follow the applicable upgrade process below to upgrade your version to the latest stable release, 0.13.4.
+
+If you are currently on version 0.14.3, 0.14.4, 0.14.5, or 0.14.6, you must follow the applicable upgrade process below to latest stable release, 0.15.1.
+
+You can perform your normal upgrade process if you are currently on a version earlier than 0.12.0. Harness recommends that you upgrade to 0.15.1.
+
+**Upgrade version 0.12.1 or 0.13.4 using Helm**
+
+If you use `helm` to upgrade Harness Self-Managed Enterprise Edition, follow the upgrade process below.
+
+1. Set `global.database.minio.mergeLogs` to `true` in your override file.
+2. Perform your Harness upgrade.
+
+**All other customers**
+
+If you don't use Helm to upgrade Harness Self-Managed Enterprise Edition, follow the upgrade process below.
+
+1. Exec into your MinIO pod.
+2. Run the following command and copy the `MINIO_ROOT_PASSWORD`.
+	```bash
+	env | grep MINIO_ROOT_PASSWORD
+	```
+3. Run the following commands.
+	```bash
+	bin/mc alias set minio http://minio:9000
+     # Access Key: admin
+     # Secret Key: <PASTE_THE_PASSWORD_COPIED_IN_STEP_2>
+	```
+	```bash
+	mkdir /data/backup/
+	bin/mc cp --recursive minio/logs /data/backup/
+	```
+4. Perform your Harness upgrade.
+5. Exec into your MinIO pod after the upgrade has been completed.
+6. Run the following command, and then copy the `MINIO_ROOT_PASSWORD`.
+	```
+	env | grep MINIO_ROOT_PASSWORD
+	```
+7. Run the following commands.
+	```bash
+	bin/mc alias set minio http://minio:9000
+     # Access Key: admin
+     # Secret Key: <PASTE_THE_PASSWORD_COPIED_IN_STEP_6>
+	```
+	```bash
+	bin/mc cp --recursive /bitnami/minio/data/backup/logs/ minio/logs
+	```
+</Warning>
+
+<Update label="May 27, 2025" description="Version 0.28.1">
+
+This release includes the following Harness module and component versions.
+
+| **Name** | **Version** |
+| --- | --- |
+| Helm Chart | [0.28.1](https://github.com/harness/helm-charts/releases/tag/harness-0.28.1) |
+| Air Gap Bundle | [0.28.1](https://console.cloud.google.com/storage/browser/smp-airgap-bundles/harness-0.28.1) |
+| NG Manager | 1.84.4 |
+| CI Manager | 1.74.4 |
+| Pipeline Service | 1.123.2 |
+| Platform Service | 1.61.0 |
+| Access Control Service | 1.82.2 |
+| Delegate | 25.04.85602 |
+| GitOps Service | 1.30.2 |
+| Change Data Capture | 1.41.3 |
+| STO Core | 1.135.0 |
+| Test Intelligence Service | 1.44.0 |
+| NG UI | 1.70.3 |
+| LE NG | 1.8.0 |
+| Looker | 1.7.11 |
+| Log Service | 1.19.1 |
+| Batch Processing | 1.44.4 |
+| Gateway | 1.42.7 |
+| IaCM Manager | 1.72.0 |
+
+**Alternative air gap bundle download method**
+
+Some admins might not have Google account access to download air gap bundles. As an alternative, you can use `gsutil`. For `gsutil` installation instructions, go to [Install gsutil](https://cloud.google.com/storage/docs/gsutil_install) in the Google Cloud documentation.
+
+```bash
+gsutil -m cp \
+  "gs://smp-airgap-bundles/harness-0.28.1/ccm_images.tgz" \
+  "gs://smp-airgap-bundles/harness-0.28.1/cdng_images.tgz" \
+  "gs://smp-airgap-bundles/harness-0.28.1/ce_images.tgz" \
+  "gs://smp-airgap-bundles/harness-0.28.1/cet_images.tgz" \
+  "gs://smp-airgap-bundles/harness-0.28.1/ci_images.tgz" \
+  "gs://smp-airgap-bundles/harness-0.28.1/ff_images.tgz" \
+  "gs://smp-airgap-bundles/harness-0.28.1/platform_images.tgz" \
+  "gs://smp-airgap-bundles/harness-0.28.1/sto_images.tgz" \
+  "gs://smp-airgap-bundles/harness-0.28.1/iacm_images.tgz" \
+  .
+```
+
+### New Features and Enhancements
+
+#### Harness Platform
+
+- Harness now upgrades jQuery to a safe version, addressing CVE-2020-11023 and preventing potential cross-site scripting (XSS) when passing HTML containing `<option>` elements into jQuery manipulation methods. \[PL-62754, ZD-82195\]
+</Update>

@@ -1,0 +1,206 @@
+---
+title: "Platform release notes"
+description: "These release notes describe recent changes to Harness Platform."
+sidebarTitle: Platform
+---
+
+<Note>
+About Harness Release Notes
+
+- **Progressive deployment:** Harness deploys changes to Harness SaaS clusters on a progressive basis. This means that the features described in these release notes may not be immediately available in your cluster. To identify the cluster that hosts your account, go to your **Account Overview** page in Harness. In the new UI, go to **Account Settings**, **Account Details**, **General**, **Account Details**, and then **Platform Service Versions**.
+- **Security advisories:** Harness publishes security advisories for every release. Go to the [Harness Trust Center](https://trust.harness.io/?itemUid=c41ff7d5-98e7-4d79-9594-fd8ef93a2838&source=documents_card) to request access to the security advisories.
+- **More release notes:** Go to [Harness Release Notes](https://developer.harness.io/release-notes) to explore all Harness release notes, including module, delegate, Self-Managed Enterprise Edition, and FirstGen release notes.
+</Note>
+
+## Important feature change notice
+
+<Warning>
+  ### Important Update: Change in Default Container Registry for Harness Images
+
+**Starting April 1, 2025, Docker Hub is enforcing [stricter rate limits](https://docs.docker.com/docker-hub/usage/) on public image pulls**. By default, Harness uses anonymous access to pull images, which may lead to failures due to these limits. if you are using the default `harnessImage` with anonymous access, pipeline failures may occur.
+
+To prevent disruptions, you can modify your configuration to avoid rate limiting by considering the following options:
+
+- **Use authenticated access**: Configure Harness to always use credentials instead of anonymous access.
+- **Pull images anonymously from alternative registries**: switch to Google Container Registry (GCR) or Amazon ECR, where different rate limits apply, to avoid restrictions.
+- **Private registry**: Pull images from your own private registry.
+
+The `harnessImage` connector configuration is used for pulling Harness images as described in the below articles:
+
+- [Harness CI images](https://developer.harness.io/docs/continuous-integration/use-ci/set-up-build-infrastructure/harness-ci)
+- [Harness STO images](https://developer.harness.io/docs/security-testing-orchestration/use-sto/set-up-sto-pipelines/sto-images#harness-sto-images-list)
+- [Harness IDP images](https://developer.harness.io/docs/internal-developer-portal/flows/harness-pipeline/#specify-the-harness-idp-images-used-in-your-pipelines)
+
+[Learn more about configuring authentication and alternative registries](https://developer.harness.io/docs/platform/connectors/artifact-repositories/connect-to-harness-container-image-registry-using-docker-connector).
+
+Additionally, **starting April 1, 2025, all [Harness delegate images](https://developer.harness.io/docs/platform/delegates/delegate-concepts/delegate-image-types) will be pulled from Google Artifact Registry (GAR)** by default to improve performance, security, and scalability.
+
+GAR Path `us-docker.pkg.dev/gar-prod-setup/harness-public/harness/<IMAGE>:<TAG>`
+
+If your organization restricts access to Google Artifact Registry (GAR), consider one of the following options to avoid disruptions:
+
+- Whitelist GAR to allow seamless access to Harness images.
+- Configure Harness to use authenticated access instead of anonymous pulls from Docker Hub.
+- Set up a registry mirror to pull Harness images instead of relying on Docker Hub.
+- We will continue to publish the image to DockerHub, you can continue using Docker Hub if the restrictions do not affect you.
+</Warning>
+
+<Warning>
+  ### Breaking Changes
+
+**Introducing a new set of permissions, while marking existing DEPRECATED permissions as INACTIVE.**
+
+Currently, **Notification Rules** and **Notification Channels** are governed by a single set of permissions:
+
+| **Resource** | **Permissions** | **Current status** | **New status** |
+| --- | --- | --- | --- |
+| **Notifications Rules and Notification Channels** | - View (`core_notification_view`) - Edit (`core_notification_edit`) - Delete (`core_notification_delete`) | DEPRECATED | INACTIVE |
+
+However, starting from June 12, 2025, these permissions will become non-operational. They will be replaced with separate new permissions:
+
+| **Resource** | **New Permissions** | **Current status** | **New status** |
+| --- | --- | --- | --- |
+| **Notification Rules** | - View (`core_notificationrule_view`) - Edit (`core_notificationrule_edit`) - Delete (`core_notificationrule_delete`) | EXPERIMENTAL | ACTIVE |
+| **Notification Channels** | - View (`core_notificationchannel_view`) - Edit (`core_notificationchannel_edit`) - Delete (`core_notificationchannel_delete`) | EXPERIMENTAL | ACTIVE |
+
+If any automation relies on these `core_notification_view/edit/delete` permissions, we recommend updating them accordingly.
+
+**Note:** The existing legacy notification permissions are DEPRECATED and will soon be moved to an INACTIVE state. The new permissions will be released in the ACTIVE state with RBAC enforced.
+</Warning>
+
+<Note>
+  ### Important
+
+This is a notification for a feature change aimed at enhancing your experience with Harness. Here's what you need to know:
+
+1. Harness uses connectors to external secret managers (e.g. Google Secret Manager or Hashicorp Vault) to resolve/store secrets used by pipelines and elsewhere in the Harness platform. External secret manager connectors require configuration, including a means to authenticate to the external Secret Manager. On **December 11, 2023**, Harness added a restriction that users can **only use Harness Built-in Secret Manager to store authentication credentials** for access to the corresponding Secret Manager.
+2. **Continuity Assured**: There is no impact on your existing pipelines. They remain compatible with the way secrets were referenced before this feature change. Note that this includes using an external secret manager other than the Harness Built-in Secret Manager to store the authentication secret.
+
+</Note>
+
+**Why did Harness make this change?**
+
+Our previous setup allowed configurations where credentials from one secret manager were stored within another, resulting in complexities that could be challenging to navigate. Moreover, these configurations might introduce vulnerabilities, posing potential security risks. For example, in a recent [incident](https://status.harness.io/incidents/w2w7btby70xs), our thread pool designated for secret manager resolution was exhausted.
+
+Moving forward, we've implemented several validations, such as the disabling of self-references. Furthermore, with the introduction of the aforementioned restriction on secret managers, configurations is simpler to comprehend and maintain. This change aims to streamline the process, enhancing clarity and reducing potential security vulnerabilities.
+
+Below is further explanation for each type of secret manager Harness currently supports and the changes associated with it.
+
+1. Harness supports three authentication methods for **AWS Key Management Service (KMS)** and **AWS Secrets Manager**:
+	1. AWS Access Key: Access Key Id, Secrets Access Key, and AWS ARN need to be stored in Harness Built-in Secret Manager.
+	2. [Assume IAM role on delegate](https://developer.harness.io/docs/platform/secrets/secrets-management/add-an-aws-kms-secrets-manager/#option-assume-iam-role-on-delegate): AWS ARN must be stored in Harness Built-in Secret Manager.
+	3. [Assume Role using STS on delegate](https://developer.harness.io/docs/platform/secrets/secrets-management/add-an-aws-kms-secrets-manager/#option-assume-role-using-sts-on-delegate): AWS ARN must be stored in Harness Built-in Secret Manager.
+2. Harness supports the following five authentication methods for **Hashicorp Vault**:
+	1. AppRole secret IDs must be stored in the Harness Built-in Secret Manager.
+	2. Token secret IDs must be stored in the Harness Built-in Secret Manager.
+	3. AWS Auth secret IDs must be stored in the Harness Built-in Secret Manager.
+	4. Vault Agent: Secret storage is not required in the Harness Built-in Secret Manager.
+	5. Kubernetes Auth: Secret storage is not required in the Harness Built-in Secret Manager.
+3. Harness supports two authentication methods for **Azure Key Vault**:
+	1. With the credentials option, the Azure Authentication key must be stored in the Harness Built-in Secret Manager.
+	2. With the credentials of a specific Harness Delegate option, secret storage is not required in Harness Built-in Secret Manager.
+4. Harness supports only one authentication method for **GCP Key Management Service**, for which the GCP KMS Credentials file must be stored in the Harness Built-in Secret Manager.
+5. Harness supports two authentication methods for **GCP Secrets Manager**:
+	1. With the credentials option, the Google Secrets Manager Credentials File must be stored in the Harness Built-in Secret Manager.
+	2. With the credentials of a specific Harness Delegate option, secret storage is not required in Harness Built-in Secret Manager.
+6. For **Custom Secrets Manager**, if any secret is needed in the template as a variable, then it can only be stored in the Harness Built-in Secret Manager.
+
+## Deprecation notice[​](https://developer.harness.io/release-notes/#deprecation-notice "Direct link to Deprecation notice")
+
+The following deprecated API endpoints are longer supported:
+
+- \[GET | PUT | POST | DELETE\] api/resourcegroup/{identifier}
+- POST api/resourcegroup/filter
+- GET api/resourcegroup
+
+<Update label="May 2025" >
+## Version 1.90.x
+
+### Fixed issues
+
+- Fixed an issue where users couldn’t create, edit, or delete custom dashboards and folders due to incorrect permission checks. These actions now work as expected based on the assigned permissions. \[PL-62667\]
+- Fixed an issue where updating users in an SCIM-managed group caused an error. This behavior was inconsistent with the Terraform provider. Now, instead of throwing an error, the system ignores the incoming user data and retains the existing users when saving the group. \[PL-62492\]
+- Fixed an issue where the Terraform provider version is no longer hardcoded in the installation command. It will now be automatically selected based on the delegate's configuration. \[PL-61735\]
+
+### New Feature and Enhancement
+
+- SMP customers can now see the chart version in the Harness UI under Account Details. \[PL-62579\]
+- All SMP services now support a custom Istio gateway. \[PL-61322\]
+- All SMP services now support Istio and Virtual Services. \[PL-59078\]
+- **User Impersonation**: Account Administrators can now securely impersonate users to troubleshoot access issues and ensure the right permissions are in place. This eliminates guesswork and helps validate user experiences by allowing admins to temporarily access and perform actions on a user's behalf. This feature is currently behind the feature flag: `PL_ENABLE_USER_IMPERSONATION`. \[PL-43425\]
+
+## Version 1.89.x
+### Fixed issues
+
+- Fixed an issue where the value for a reference-type secret was missing during policy evaluation. With this fix, the value is now passed correctly, ensuring that policy evaluation on values is honoured. \[PL-62417\]
+- Resolved an issue where deleted variables did not reflect correctly in Resource Groups. Now, if a variable is deleted, it will also be removed from any associated Resource Groups. \[PL-60850\]
+- Updated the API docs for [**User Group APIV2** API](https://apidocs.harness.io/tag/User-Group/#operation/getUserGroupV2) to correctly reflect the subset of fields returned in the response. \[PL-62617\]
+
+## Version 1.88.x
+
+### Fixed issues
+
+- Resolved an issue where unauthenticated users were redirected to the homepage after login instead of their intended deep link destination. \[PL-61939\]
+- Fixed error messaging for non-inline secrets created via YAML to ensure accurate status on the secret listing page. \[PL-62270\]
+
+#### New features and enhancements[​](https://developer.harness.io/release-notes/#new-features-and-enhancements "Direct link to New features and enhancements")
+
+- Delegate Configurations have been removed from the Resource Group configuration UI to reduce clutter and simplify the interface.\[PL-60603\]
+- New Audit Event for API Token Expiry: Harness now logs an audit event whenever an API token expires. This enhancement improves visibility and traceability of token lifecycle events, supporting stronger security auditing. \[PL-62394\]
+</Update>
+
+<Update label="April 2025" >
+## Version 1.87.x
+
+### Fixed issues
+
+- Used enhanced secretId parsing to account for dynamic secret references. \[PL-62089\]
+- Email text overflow is now wrapped to prevent overlapping with the date column. \[PL-6022\]
+
+### New features and enhancements
+
+- Implicit tag (delegate name) is now supported for delegate version override. \[PL-62335\]
+- Added support for governing scope Variables in Harness using Open Policy Agent (OPA) policies, enabling fine-grained control over variable creation and editing. This feature is currently behind the feature flag `PL_ENABLE_OPA_FOR_VARIABLES`. \[PL-61504\]
+
+## Version 1.86.x
+
+### Fixed issues
+
+- Resolved an issue where future-dated cloud credits were not consumed when no current credits were available. Previously, this caused overage to be incorrectly updated. \[PL-62134\]
+- Addressed a performance issue where the FileStore page was slow when too many files were loaded at once. We’ve added virtualization so that only a few files load at a time, making the page much faster and smoother. \[PL-61880\]
+- Deprecated the ‘Account Edition’ column from the Account List View across Harness. This change is part of our ongoing effort to simplify the UI and reduce redundancy. \[PL-61850\]
+
+### New features and enhancements
+
+- Pipeline notifications sent to Datadog are now tagged with `source:harness_notifications`, following the release of the [Harness Notifications integration](https://docs.datadoghq.com/integrations/harness_harness_notifications/) in Datadog. \[PL-59888\]
+
+## Version 1.85.x
+
+### Fixed issues
+
+- Added support for using MinIO external secrets with Log Service. \[PL-61107\]
+
+### New features and enhancements[​](https://developer.harness.io/release-notes/#new-features-and-enhancements-3 "Direct link to New features and enhancements")
+
+- Upgraded internal protocol buffer library from `protobuf-java` 3.15.5 to 4.28.3 to address security vulnerabilities and enhance service communication, with no impact on user experience or workflows. \[PL-61208\]
+- Introduced a maximum limit on role assignments per account based on license edition to safeguard system stability: 100 for Community and Free editions, and 75,000 for Team and Enterprise editions. \[PL-58428\]
+
+## Version 1.84.x
+
+### Fixed issues
+
+- Resolved an issue where the Auto Upgrade Indicator for Delegates was not displaying correctly in certain scenarios.\[PL-61711\]
+- Resolved an issue that caused crashes during page navigation on the Audit Trail page. To access a specific page in the Audit Trails directly, users can either manually modify the URL or navigate through the available pages using the Previous and Next buttons. \[PL-61658\]
+
+## Version 1.83.x
+
+### Fixed issues
+
+- Fixed: Ignored `docker.io` in image tag for delegate upgrade checks, as it is the default registry when not specified. \[PL-61417\]
+- Fixed an issue where the "New Project" button was incorrectly enabled after switching organizations, even for users without project creation permissions. Now, permissions are re-validated after scope switching, ensuring the button remains disabled when necessary. \[PL-61225\]
+- Fixed an issue on the Delegate Token listing page in Safari where tokens weren’t copied to the clipboard despite showing a success message. Tokens are now copied correctly. \[PL-56230\]
+
+### New features and enhancements
+
+- Added support to configure [Sumo Logic as a streaming destination](https://developer.harness.io/docs/platform/governance/audit-trail/audit-streaming/#configure-the-streaming-connector) to send Harness audit log data to an HTTP source in Sumo Logic. This feature is currently behind the feature flag `PL_ENABLE_SUMOLOGIC_AUDIT_STREAMING` and requires Harness Delegate version 85500 or later. \[PL-58532\]
+</Update>

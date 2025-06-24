@@ -1,0 +1,129 @@
+---
+title: Product Roadmap
+description: "This roadmap illustrates our intended direction and offers a sneak peek at several planned features. These features have been prioritized based on valuable input directly sourced from our customers. You are welcome to submit your own product ideas to the [Harness Idea Portal](https://ideas.harness.io/)."
+mode: wide
+---
+
+## Platform Roadmap
+
+SaaS release status: GA, SMP release status: GA
+
+<CardGroup cols={3}>
+  <Card title="Released" icon="check" iconType="solid">
+    What has been released
+    <Card title="Custom banners"  href="https://developer.harness.io/docs/platform/notifications/create-and-configure-banners" iconType="solid">
+    `Notify`
+    Display custom banners in the Harness UI
+    </Card>
+    <Card title="Send notifications through Delegate"  href="https://developer.harness.io/docs/platform/notifications/centralised-notification#setting-up-notifications-management" iconType="solid">
+    `Delegate` `Notify`
+    Receive central or pipeline notifications exclusively through Delegates or a designated delegate.
+    </Card>
+    <Card title="OIDC Support for secret managers"  href="https://developer.harness.io/release-notes/platform/#version-164x" iconType="solid">
+    `Secure`
+    Use OpenID Connect (OIDC) functionality to allow Harness to communicate directly with your cloud provider secret manager without secrets or credentials
+    </Card>
+    <Card title="UBI9 upgrade"  href="https://developer.harness.io/release-notes/platform/#version-164x" iconType="solid">
+    `Delegate`
+    Upgrade the Delegate base image from redhat/ubi8-minimal:8.10 to redhat/ubi9-minimal:9.4
+    </Card>
+    <Card title="Centralized view of permissions on a resource"  href="https://developer.harness.io/release-notes/platform/#version-164x" iconType="solid">
+    `Access Control`
+    Centralized view of permissions on a resource
+    </Card>
+    <Card title="SSO with OIDC"  href="https://developer.harness.io/release-notes/platform/#version-164x" iconType="solid">
+    `Authentication`
+    Single Sign-On (SSO) with any OIDC (OpenID Connect) provider, allowing authentication and provisioning user and user group
+    </Card>
+    <Card title="Auto upgrade Harness Docker Delegate"  href="https://developer.harness.io/release-notes/platform/#version-164x" iconType="solid">
+    `Delegate`
+    Added support for automatic upgrades for Docker delegates brought up using the docker run command
+    </Card>
+    <Card title="Auto Discovery of Entities in Git"  href="https://developer.harness.io/release-notes/platform/#version-164x" iconType="solid">
+    `Git Experience`
+    When an entity is created in Git it is created in Harness as well.
+    </Card>
+    <Card title="Notifications via Datadog"  href="https://developer.harness.io/release-notes/platform/#version-164x" iconType="solid">
+    `Notify` `Pipeline`
+    Real-time pipeline event notifications directly in Datadog,
+    </Card>
+    <Card title="Customized notification body text"  href="https://developer.harness.io/release-notes/platform/#version-164x" iconType="solid">
+    `Notify`
+    Create and manage customized notification body text
+    </Card>
+    <Card title="Policy as Code for Variables"  href="https://developer.harness.io/release-notes/platform/#version-164x" iconType="solid">
+    `Policy`
+    Support for Variables as an entity to store and enforce policies for variables and processes across the Harness platform.
+    </Card>
+    <Card title="OIDC Support for GCP"  href="https://developer.harness.io/release-notes/platform/#version-164x" iconType="solid">
+    `Secure`
+    Use OpenID Connect (OIDC) functionality to allow Harness to communicate directly with your GCP resources without secrets or credentials
+    </Card>
+    <Card title="Encrypted SAML"  href="https://developer.harness.io/release-notes/platform/#version-164x" iconType="solid">
+    `Secure`
+    Enable encrypted SAML to allow Harness integration with your IdP
+    </Card>
+    <Card title="Gov cloud support for Azure Key Vault"  href="https://developer.harness.io/release-notes/platform/#version-164x" iconType="solid">
+    `Secure`
+    Support government cloud for Azure Key Vault connectors with username/password
+    </Card>
+    <Card title="Absolute session timeout"  href="https://developer.harness.io/release-notes/platform/#version-164x" iconType="solid">
+    `Session Management`
+    For enhanced security, users can be logged out of their account after the configured timeout, regardless of any activity
+    </Card>
+    <Card title="Supported modules"  href="https://developer.harness.io/release-notes/platform/#version-164x" iconType="solid">
+    `SMP`
+    Continuous Delivery and GitOps, Continuous Integration, Security Test Orchestration, Feature Flags, Service Reliability Management, Chaos Engineering, Cloud Cost Management - Beta (AWS Cost Visibility)
+    </Card>
+    <Card title="Backup and restore"  href="https://developer.harness.io/release-notes/platform/#version-164x" iconType="solid">
+    `SMP`
+    Use Velero to back up and restore Helm-based installations of Harness Self-Managed Enterprise Edition
+    </Card>
+  </Card>
+  <Card title="Now" icon="clock" iconType="solid">
+    Q2 2025, May 2025 - Jul 2025
+    <Card title="Impersonate a user"  href="https://developer.harness.io/release-notes/platform/#version-164x" iconType="solid">
+    `Access Control`
+    Ability to impersonate a user allowing an impersonator to perform actions on the user behalf. This helps admins ensure that all users have desired access to resources.
+    </Card>
+    <Card title="Support Access control using tags for connectors"  href="https://developer.harness.io/release-notes/platform/#version-164x" iconType="solid">
+    `Access Control`
+    Add support for adding connectors as a resource in resource group 'By tag', allowing the dynamic inclusion/exclusion of connectors as they are assigned tags
+    </Card>
+    <Card title="Pipeline Create/Edit permission split"  href="https://developer.harness.io/release-notes/platform/#version-164x" iconType="solid">
+    `Access Control` `Pipeline`
+    Split Pipeline 'Create/Edit' permission into 'Create' and 'Edit' permissions
+    </Card>
+    <Card title="Granular RBAC Permissions for Dashboards"  href="https://developer.harness.io/release-notes/platform/#version-164x" iconType="solid">
+    `Access Control` `Dashboards`
+    Granular permissions for Dashboards to provide users more control while creating different roles.
+    </Card>
+    <Card title="Auto save Dashboard"  href="https://developer.harness.io/release-notes/platform/#version-164x" iconType="solid">
+    `Dashboards`
+    Auto save progress made on dashboards.
+  </Card>
+  </Card>
+  <Card title="Later" icon="calendar-days" iconType="solid">
+    Q2 2025+, Aug 2025 & beyond
+    <Card title="Granular RBAC Permissions for User Groups"  href="https://developer.harness.io/release-notes/platform/#version-164x" iconType="solid">
+    `Access Control`
+    Granular permissions for User Groups to provide users more control while creating different roles.
+    </Card>
+    <Card title="Secret Create/Edit permission split"  href="https://developer.harness.io/release-notes/platform/#version-164x" iconType="solid">
+    `Access Control` `Secure`
+    Split Secret 'Create/Edit' permission into 'Create' and 'Edit' permissions
+    </Card>
+    <Card title="Export audit trail as CSV"  href="https://developer.harness.io/release-notes/platform/#version-164x" iconType="solid">
+    `Audit Trail`
+    Export audit trail as a CSV directly from Harness UI.
+    </Card>
+    <Card title="Notification for Service Accounts expiration"  href="https://developer.harness.io/release-notes/platform/#version-164x" iconType="solid">
+    `Notify`
+    Add support for centralized notification system to configure service account notifications
+    </Card>
+    <Card title="Policy to govern projects"  href="https://developer.harness.io/release-notes/platform/#version-164x" iconType="solid">
+    `Policy`
+    Support to allow policy to govern projects
+    </Card>
+  </Card>
+</CardGroup>

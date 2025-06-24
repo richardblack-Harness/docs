@@ -1,0 +1,71 @@
+---
+title : "Security Testing Orchestration release notes"
+description : "These release notes describe recent changes to Harness Security Testing Orchestration (NextGen SaaS)."
+---
+
+<Note>
+
+### About Harness Release Notes
+
+- **Progressive deployment:** Harness deploys changes to Harness SaaS clusters on a progressive basis. This means that the features described in these release notes may not be immediately available in your cluster. To identify the cluster that hosts your account, go to your **Account Overview** page in Harness. In the new UI, go to **Account Settings**, **Account Details**, **General**, **Account Details**, and then **Platform Service Versions**.
+- **Security advisories:** Harness publishes security advisories for every release. Go to the [Harness Trust Center](https://trust.harness.io/?itemUid=c41ff7d5-98e7-4d79-9594-fd8ef93a2838&source=documents_card) to request access to the security advisories.
+- **More release notes:** Go to [Harness Release Notes](https://developer.harness.io/release-notes) to explore all Harness release notes, including module, delegate, Self-Managed Enterprise Edition, and FirstGen release notes.
+</Note>
+
+<Update label="May 2025" description="Version v1.140.1">
+
+### New Features and Enhancements
+
+- Added support for the setting `ingest_tool_severity: true` in the **[Checkmarx One](https://developer.harness.io/docs/security-testing-orchestration/sto-techref-category/checkmarx/checkmarxone-scanner-reference)**, **[Anchore](https://developer.harness.io/docs/security-testing-orchestration/sto-techref-category/anchore-enterprise-scanner-reference)**, and **[Prisma Cloud](https://developer.harness.io/docs/security-testing-orchestration/sto-techref-category/prisma-cloud-scanner-reference)** steps. When added, STO will use the severity provided directly by the scanner instead of calculating it based on CVSS scores (STO-8776, STO-8778, STO-8779).
+- Renamed the built-in STO role from `Security Testing SecOps` to `Security Testing AppSec`. This is not a breaking change and remains fully backward compatible (STO-7392).
+- Added support for the SonarQube step to include privileges for creating and using the Sonar cache (STO-8889).
+
+### Fixed Issues
+
+- Fixed an issue in the Snyk step where the filename and upgrade version were missing in some cases (STO-8914).
+- Fixed an issue in the Veracode step where files with modification dates earlier than 1980 caused the scan to fail (STO-8910).
+</Update>
+
+<Update label="April 2025" description="Version v1.136.1">
+
+### New Features and Enhancements
+
+- Updated the Jira ticket creation dialog to dynamically fetch and display all required fields for ticket creation (STO-8521).
+
+### Fixed Issues
+
+- Fixed an issue where the CVSS score of issues did not match the severity label in some cases (STO-8807).
+- Fixed an issue where Harness AI failed to present remediation details if the cloned codebase did not match the ingested scan result’s repository; remediation is now shown correctly for the ingested repo (STO-8664).
+</Update>
+
+<Update label="May 2025" description="Version v1.134.1">
+
+### New Features and Enhancements
+
+- Switched to using the Harness GAR registry as the default source instead of DockerHub to avoid rate-limiting issues (STO-8669).
+
+### Fixed Issues
+
+- Fixed a bug where the `ListTickets` endpoint did not respect `projectID` and `orgID` scopes (STO-8628).
+- Fixed an issue in `Local OCI/Docker archive in this stage` image scans where the tar file name was incorrectly passed to the CLI instead of the image name (STO-8690, ZD-80330).
+- Resolved an issue where STO failed to parse the latest results from BlackDuckHub (STO-8718, ZD-81315).
+
+</Update>
+
+<Update label="March 2025" description="Version v1.130.6">
+
+### New Features and Enhancements
+
+- Enhanced **[Security Tests Dashboard](https://developer.harness.io/docs/security-testing-orchestration/dashboards/security-testing-dashboard)** performance by optimizing queries for faster and more efficient data loading; data load times are now significantly reduced (STO-8584).
+<Frame>
+	![](https://developer.harness.io/assets/images/sto-security-testing-dashboard-11306-a04609333d2fe102252441c4bfdf4eba.png "Click to view full size image")
+</Frame>
+- Improved **Harness AI** error responses with additional context for better understanding (STO-8570).
+
+### Fixed Issues
+
+- Fixed a regression that could cause early-access STO features, enabled for specific customers, to be disabled or hidden (STO-8624).
+- Fixed an issue where the Gitleaks scanner was running in the wrong mode, causing Docker authentication to be ignored and leading to rate limit issues (STO-8611).
+- Resolved a permission denied error that occurred when running STO steps in parallel with different users (STO-8560, ZD-77709).
+- Fixed an issue where the **Request Exemption** button on the scan results page appeared disabled (STO-8596).
+</Update>

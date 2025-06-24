@@ -1,0 +1,106 @@
+---
+title: Application Maps
+description: "This topic describes application maps, their significance, and how to create, edit, and delete them."
+---
+
+## Before you begin
+
+<CardGroup cols={2}>
+  <Card title="Service discovery" icon="angle-right" iconType="solid" href="https://developer.harness.io/docs/platform/service-discovery/" horizontal />
+  <Card title="How Harness CE leverages Service Discovery?" icon="angle-right" iconType="solid" href="https://developer.harness.io/docs/chaos-engineering/use-harness-ce/service-discovery#how-does-harness-ce-leverage-discovered-services" horizontal />
+  <Card title="Create Discovery Agent" icon="angle-right" iconType="solid" href="https://developer.harness.io/docs/platform/service-discovery/customize-agent#create-discovery-agent" horizontal />
+</CardGroup>
+
+## What is an Application Map?
+
+An application map is a resource on the Harness Platform (also known as the control plane) used to bind multiple interacting [discovered services](https://developer.harness.io/docs/chaos-engineering/use-harness-ce/service-discovery) into a single object, thereby allowing the users to act (test, monitor, and so on) on a group of services.
+
+## Why is an Application Map Required?
+
+Application maps help:
+
+- Test and monitor a group of services.
+- Determine the resilience coverage and resilience score for the overall application map and its constituent services.
+- Manage experiments associated with them.
+- Perform trend analysis.
+
+## How to Use an Application Map?
+
+Once you have a list of discovered services, Harness CE creates an application map (using [auto-suggestion or manual service selection](https://developer.harness.io/docs/chaos-engineering/getting-started/onboarding/guided-onboarding#create-application-maps)) based on your requirements. You can refer to the real-time topology view to get the connectivity representation.
+
+You can [create](https://developer.harness.io/docs/platform/#create-application-map), [edit](https://developer.harness.io/docs/platform/#edit-application-map), and [delete](https://developer.harness.io/docs/platform/#delete-application-map) application maps.
+
+## Create Application Map
+
+<Steps>
+  <Step>
+    To create an application map, select **Project Settings**, and then select **Discovery**.
+    <Frame>
+    ![](https://developer.harness.io/assets/images/create-agent-1-4ed85c12d363550530518afde4e2aa50.png)
+    </Frame>
+  </Step>
+  <Step>
+    Select one of the discovery agents or [create a new discovery agent](https://developer.harness.io/docs/platform/service-discovery/customize-agent#create-discovery-agent). In this example, select a discovery agent that you created earlier.
+    <Frame>
+    ![](https://developer.harness.io/assets/images/select-agent-2-5b796fa8fe79eb46dd25bbe9af53b42d.png)
+    </Frame>
+  </Step>
+  <Step>
+    Once you select a discovery agent, navigate to the **Application Maps** tab and select **New Application Map**.
+    <Frame>
+    ![](https://developer.harness.io/assets/images/navigate-3-4439c968a3d7d95be698d44f25274dcd.png)
+    </Frame>
+  </Step>
+  <Step>
+    Specify a name, description (optional), and tags (optional). Select **Continue**.
+    <Frame>
+    ![](https://developer.harness.io/assets/images/name-np-2-73b76e13e77418457ae151d3a61a2c6e.png)
+    </Frame>
+  </Step>
+  <Step>
+    Select one or more discovered services that you wish to use and select **Next**.
+    <Frame>
+	![](https://developer.harness.io/assets/images/select-service-3-1993ec8c292edb0023ba727d15d93097.png)
+    </Frame>
+  </Step>
+  <Step>
+    Optionally, add service relationship details and select **Save Changes**.
+    <Frame>
+    ![](https://developer.harness.io/assets/images/service-rel-4-7cc400c7b86edeb2a85894a8e8d1ef63.png)
+    </Frame>
+  </Step>
+  <Step>
+    Select **Save**.
+    <Frame>
+    ![](https://developer.harness.io/assets/images/save-nw-5-e1065f45f2151887bdf47e7755de6831.png)
+    </Frame>
+  </Step>
+</Steps>
+
+## Edit Application Map
+
+<Steps>
+  <Step>
+  To edit an application map, select **More Options** (⋮), then select **Edit**. Make the necessary changes and select **Save**.
+  <Frame>
+	![](https://developer.harness.io/assets/images/edit-8-b57ccc03e4abfdc042121134330d5a90.png)
+  </Frame>
+  </Step>
+</Steps>
+
+## Delete Application Map
+
+<Steps>
+  <Step>
+  To delete an application map, select **More Options** (⋮), then select **Delete**.
+  <Frame>
+  ![](https://developer.harness.io/assets/images/delete-6-4d5467ca79d2b3da0121079c23065f05.png)
+  </Frame>
+  </Step>
+  <Step>
+  To confirm the deletion, select **Delete**.
+  <Frame>
+  ![](https://developer.harness.io/assets/images/confirm-delete-7-2ba965d262e0dbe959c31937eccfef03.png)
+  </Frame>
+  </Step>
+</Steps>

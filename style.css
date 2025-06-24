@@ -1,0 +1,13 @@
+@font-face {
+  font-family: "Calsans";
+  src: url("https://cdn.prod.website-files.com/6222ca42ea87e1bd1aa1d10c/661761b273dadb03cd8ea268_CalSans-SemiBold.woff2") format("woff2");
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Calsans";
+}

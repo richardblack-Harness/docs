@@ -1,0 +1,37 @@
+---
+titl: Infrastructure as Code Management release notes
+description: "These release notes describe recent changes to Harness Infrastructure as Code Management."
+---
+
+<Note>
+### About Harness Release Notes
+
+- **Progressive deployment:** Harness deploys changes to Harness SaaS clusters on a progressive basis. This means that the features described in these release notes may not be immediately available in your cluster. To identify the cluster that hosts your account, go to your **Account Overview** page in Harness. In the new UI, go to **Account Settings**, **Account Details**, **General**, **Account Details**, and then **Platform Service Versions**.
+- **Security advisories:** Harness publishes security advisories for every release. Go to the [Harness Trust Center](https://trust.harness.io/?itemUid=c41ff7d5-98e7-4d79-9594-fd8ef93a2838&source=documents_card) to request access to the security advisories.
+- **More release notes:** Go to [Harness Release Notes](https://developer.harness.io/release-notes) to explore all Harness release notes, including module, delegate, Self-Managed Enterprise Edition, and FirstGen release notes.
+</Note>
+
+<Update label="May" description="IAC Server Version v1.143.0 & v1.145.0">
+
+## Feature Improvements:
+
+- **Scoped Repository Selection in Module Registry:** Project-scoped repositories can now be used at the organization and account levels in the Module Registry. This enhancement gives you greater flexibility and control over where your modules are sourced from—making it easier to share and reuse IaC code across teams. (IAC-3476, IAC-3485)
+
+Get started by [registering a module](https://developer.harness.io/docs/infra-as-code-management/iacm-features/module-registry#register-a-module).
+</Update>
+<Update label ="April" description="IAC Server Version 1.138.0">
+## \[New Feature\] Workspace Wizard UI
+
+**\[IAC-3428\] | [Docs](https://developer.harness.io/docs/infra-as-code-management/workspaces/create-workspace#create-a-new-workspace)**
+
+The Workspace Wizard UI has been updated to improve usability and streamline the workspace creation process.
+
+<Frame>
+  <iframe src="https://app.tango.us/app/embed/cfb68b54-eb46-42af-a622-5b76c9270598?skipCover=false&amp;defaultListView=false&amp;skipBranding=false&amp;makeViewOnly=true&amp;hideAuthorAndDetails=true" title="Create a IaCM Workspace in Harness" width="100%" height="600" referrerpolicy="strict-origin-when-cross-origin" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen="true"></iframe>
+</Frame>
+
+## Feature Improvements
+
+- **DevOps Essentials License Enforcement:** The DevOps Essentials license is now enforced for IACM applications, ensuring compliance. We’ve also added license test scenarios to validate this functionality. (IAC-3379)
+- **Module Registry Access:** You can now access the Module Registry at both the project and account levels within IACM. If you access it at the project level, a warning banner will notify you that all updates will be saved at the account level. (IAC-3367)
+</Update>

@@ -1,0 +1,44 @@
+---
+title: Software Engineering Insights release notes
+description: "These release notes describe recent changes to Harness Software Engineering Insights."
+sidebarTitle: "Software Engineering Insights"
+---
+
+<Note>
+### About Harness Release Notes
+
+- **Progressive deployment:** Harness deploys changes to Harness SaaS clusters on a progressive basis. This means that the features described in these release notes may not be immediately available in your cluster. To identify the cluster that hosts your account, go to your **Account Overview** page in Harness. In the new UI, go to **Account Settings**, **Account Details**, **General**, **Account Details**, and then **Platform Service Versions**.
+- **Security advisories:** Harness publishes security advisories for every release. Go to the [Harness Trust Center](https://trust.harness.io/?itemUid=c41ff7d5-98e7-4d79-9594-fd8ef93a2838&source=documents_card) to request access to the security advisories.
+- **More release notes:** Go to [Harness Release Notes](https://developer.harness.io/release-notes) to explore all Harness release notes, including module, delegate, Self-Managed Enterprise Edition, and FirstGen release notes.
+</Note>
+
+<Update label="April 2025">
+
+## Version 202504.2
+
+### Early access features
+
+- You can now configure your GitHub integration to filter data using GitHub Organizations and GitHub Teams making it easier to align your SEI insights with your org structure.
+	- This filtering is available only during initial setup and post-configuration setup experience of the GitHub integration.
+	- The feature is currently in **BETA** and requires the SEI\_GITHUB\_REPO\_SELECTION\_ENABLED & SEI\_GITHUB\_REPO\_SELECTION\_ENABLED feature flag. To request early access, please contact [Harness Support](https://developer.harness.io/docs/software-engineering-insights/sei-support).
+
+### Fixed issues
+
+- Fixed a bug that was preventing correct sorting in drilldown views across sprint tracking widgets. (SEI-10607)
+- We resolved an issue where clicking into a ticket from a PR details view would sometimes lead to an empty screen. The correct ticket/work-item data will now appear as expected. (SEI-11418)
+- Fixed the issue where data in the Jira Releases widget was displayed incorrectly due to local timezone variations. All data is now consistently shown in UTC. (SEI-11603)
+</Update>
+
+<Update label="April 2025">
+
+## Version 202504.1
+
+### New features & enhancements
+
+- Introduced a new “Load More” experience for SEI Dashboards containing more than four widgets. This enhancement improves performance by deferring widget data loading until the user chooses to view more. (SEI-11071)
+- Improved behavior for precalculation-based widgets. When switching between a pre-calculated interval and a custom interval, the system now intelligently detects the change and switches between pre-calculated and live data as needed, ensuring accurate data display. (SEI-11106)
+
+### Fixed issues
+
+- Fixed an issue that caused inconsistencies in the data displayed between the Issue/Work-item Details page and Sprint Metrics widgets. Data is now aligned across both views. (SEI-11343)
+</Update>

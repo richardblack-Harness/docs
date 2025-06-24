@@ -1,0 +1,123 @@
+---
+title : "Cloud Cost Management release notes"
+description : "Review the notes below for details about recent changes to Harness Cloud Cost Management. For release notes for Harness Self-Managed Enterprise Edition, go to [Self-Managed Enterprise Edition release notes](https://developer.harness.io/release-notes/self-managed-enterprise-edition). Additionally, Harness publishes security advisories for every release. Go to the [Harness Trust Center](https://trust.harness.io/?itemUid=c41ff7d5-98e7-4d79-9594-fd8ef93a2838&source=documents_card) to request access to the security advisories."
+---
+
+
+<Note>
+Progressive deployment: Harness deploys changes to Harness SaaS clusters on a progressive basis. This means that the features described in these release notes may not be immediately available in your cluster. To identify the cluster that hosts your account, go to your **Account Overview page** in Harness. In the new UI, go to Account Settings, Account Details, General, Account Details, and then Platform Service Versions. This section displays the current version of Cloud Cost Management (CCM) running on your account.
+</Note>
+
+<Update label="May 2025" description="Version 1.51.4">
+
+### \[New Feature\] Replacement Schedules
+
+We have added support for replacement schedules with options: **Always, Never, or Custom**. Users can now define specific windows (e.g., Tuesdays and Fridays, 9 PM–11:59 PM IST) for bin packing operations. Currently this is only available for "Harness Pod Eviction". During these scheduled periods, node replacements and system updates may occur, temporarily affecting workload availability. So it is advisable to choose time windows that minimize impact on critical operations.
+
+<Frame>
+![](https://developer.harness.io/assets/images/replacement-schedules-d1879614fba179a4cd9761e931911588.jpeg "Click to view full-size image")
+</Frame>
+
+### Feature Improvements
+
+- **Added validation for Cost Category rules during save and update operations:** The system now constructs and dry-runs queries based on the defined cost bucket rules to identify any invalid rules before saving. As a result of this additional validation step, you may experience a slight delay during Cost Category save or update actions. \[CCM-21901\]
+- **Added support for quarterly reports in Perspectives:** Previously, only monthly and annual reporting options were available. With the new quarterly option, users can now receive more balanced and actionable insights per quarter.
+<Frame>
+![](https://developer.harness.io/assets/images/quarterly-report-9bbb4c8ebbf067d0f4f88c38600ab8c1.jpeg "Click to view full-size image")
+</Frame>
+- **Nodepool Recommendations UI changes**: "Largest Resource Requirements" has been renamed to "Minimum Resource Requirements".The positions of Preferred and Minimum resource requirements have been swapped in the UI for better clarity and consistency. Preferred resource requirements will always be greater than Minimum resource requirements. We have also added tooltips on the UI to make the UI more user-friendly. \[CCM-22826\]
+<Frame>
+![](https://developer.harness.io/assets/images/ui-enhance-b866f9199dadd9c0db9e18bdb2b67ee7.jpeg "Click to view full-size image")
+</Frame>
+- **Traffic analysis chart on resource level for AutoStopping Rules**: We’ve introduced a new interactive chart to help you better understand resource activity and idleness over the past 30 days. It is available on every AutoStopping rule page to make it easy for users to analyze trends at a glance.
+<Frame>
+![](https://developer.harness.io/assets/images/traffic-analysis-5f7c213b6ff3159354906796e8fdf9f9.png "Click to view full-size image")
+</Frame>
+- **More Options for Date Ranges**: We’ve added support for additional shorter time ranges on the Governance Evaluations page, including:
+	- Last 1 Minute
+	- Last 5 Minutes
+	- Last 10 Minutes
+	- Last 15 Minutes
+	- Last 30 Minutes
+	- Last 45 Minutes
+	- Last 1 Hour
+	- Last 3 Hours
+	- Last 6 Hours
+	- Last 12 Hours
+	- Last 1 Day
+	- Last 2 Days
+	- Last 7 Days
+	- Last 30 Days.
+<Frame>
+![](https://developer.harness.io/assets/images/dates-gov-d8081587000fa8966357370bcea65f86.png "Click to view full-size image")
+</Frame>
+- **Editing Instance Families**: We’ve added support for editing Instance Families for regions that have already been added in the create/update Nodepool preset flow.
+<Frame>
+![](https://developer.harness.io/assets/images/edit-instance-4e763a314afc97fe4cbf9f8db705a1ec.jpeg "Click to view full-size image")
+</Frame>
+
+### Bug Fixes
+
+- The [Harness API for Nodepool Recommendations](https://apidocs.harness.io/tag/Cloud-Cost-Recommendations#operation/listRecommendations) previously did not return the Account ID in the response. This issue has now been fixed, and the API will include the Account ID as part of the response payload. \[CCM-21082\]
+- **Improved Accuracy in Cost Category Anomaly Detection:** We’ve improved how cost category rules are applied to anomaly filters within Perspectives. This update ensures that anomalies tied to cost category rules ( combinations of AND/OR conditions) are shown more accurately. \[CCM-21712\]
+- **UI enhancement for Governance Recommendations**: We’ve resolved an issue in the Governance Recommendations’ Resource Breakdown tab where Azure Resource IDs were overflowing into adjacent cells. The text now wraps onto the next line to maintain proper layout. \[CCM-22850\]
+</Update>
+
+<Update label="May 2025" description="Version 1.50.2">
+
+### \[New Feature\] Label V2
+
+We're rolling out **Label V2**, a major enhancement to how labels (tags) are handled and displayed across the platform, delivering **better visibility**, **performance**, and **alignment with cloud-native formats**.
+
+#### Key Benefits
+
+- Improved Query Performance
+- Accurate and original label visibility
+
+<Warning>
+**Action Required**
+
+Users will need to manually **update their Perspectives, Cost Categories, and Dashboards** to use the new LabelsV2 format.
+</Warning>
+
+<Frame>
+![](https://developer.harness.io/assets/images/labelsv2-025ae6240694bcbcaaeb8a624f0bc125.png "Click to view full-size image")
+</Frame>
+
+### Feature Improvements
+
+- **Preferred Instance Families:** We’ve added support for saving Preferred Instance Families in Nodepool presets, along with Buffer and Minimum Node Count. Users can now select specific instance families per cloud provider and region, and these preferences will be considered when generating the next set of Nodepool recommendations. \[CCM-21987\]
+<Frame>
+![](https://developer.harness.io/assets/images/nodepool-changes-3406883f66466866b11f4e946dce73a1.png "Click to view full-size image")
+</Frame>
+- **Granular RBAC for Governance Alerts**: You can now assign granular permissions for Governance Alerts to specific resource groups and roles, enabling more precise access control. \[CCM-21921\]
+	**For Resource Groups:**
+	1. Navigate to **Account Settings** > **Access Control** > **Resource Groups**
+	2. Select an existing Resource Group or create a new one
+	3. Enable the **Cloud Asset Governance Alerts** permission
+	4. Choose between **All** alerts or **Specified** alerts for more granular control
+	<Frame>
+	![](https://developer.harness.io/assets/images/rg-granular-59732c7932d53d88242f0c96a7e37559.png "Click to view full-size image")
+	</Frame>
+	**For Roles:**
+	1. Navigate to **Account Settings** > **Access Control** > **Roles**
+	2. Select an existing Role or create a new one
+	3. Enable the **Cloud Asset Governance Alerts** permission
+	4. Assign specific permissions such as **View** or **Edit/Delete**
+	<Frame>
+	![](https://developer.harness.io/assets/images/roles-rbac-a01261d05b1cd624b55d29a2673e905e.png "Click to view full-size image")
+	</Frame>
+
+### Bug Fixes
+
+- We have resolved an issue where, in the **Setup HTTP/HTTPS** step while creating an **AS Rule**, clicking the **Proxy** option first and then closing it would cause the **LB** option to incorrectly open the **Proxy** dialog. It will now always open the correct dialog. \[CCM-22677\]
+
+</Update>
+
+<Update label="April 2025" description="Version 1.49.1">
+
+### Feature Improvements
+
+- Asset Governance Alert Fix: We've improved the alert update experience to ensure that only relevant resources and cloud accounts are displayed based on the selected cloud provider. This enhancement ensures a more accurate and streamlined configuration flow for Governance alerts. \[CCM-22618\]
+
+</Update>
