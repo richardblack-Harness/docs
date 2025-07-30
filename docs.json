@@ -245,9 +245,7 @@
                   "docs/ai-test-automation",
                   {
                     "group": "New to AI Test Automation",
-                    "pages": [
-                      "docs/ai-test-automation/get-started/overview"
-                    ]
+                    "pages": ["docs/ai-test-automation/get-started/overview"]
                   },
                   {
                     "group": "Best Practices & Resources",
@@ -262,6 +260,9 @@
           {
             "dropdown": "Artifact Registry",
             "icon": "box",
+            "styling": {
+              "eyebrows": "breadcrumbs"
+            },
             "anchors": [
               {
                 "anchor": "Artifact Registry",
@@ -270,7 +271,17 @@
                   "docs/artifact-registry",
                   {
                     "group": "New to Artifact Registry?",
-                    "pages": ["docs/artifact-registry/get-started/overview"]
+                    "pages": [
+                      "docs/artifact-registry/get-started/overview",
+                      "docs/artifact-registry/get-started/quickstart"
+                    ]
+                  },
+                  {
+                    "group": "Use Artifact Registry",
+                    "pages": [
+                      "docs/artifact-registry/use-artifact-registry/manage-registries",
+                      "docs/artifact-registry/use-artifact-registry/manage-artifacts"
+                    ]
                   }
                 ]
               },
@@ -735,7 +746,7 @@
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg",
-    "href": "https://www.harness.io/"
+    "pages": ["index"]
   },
   "navbar": {
     "links": [
@@ -747,7 +758,6 @@
         "label": "Sign up",
         "href": "https://app.harness.io/auth/#/signup?utm_source=harness_io&utm_medium=cta&utm_campaign=platform&utm_content=main_nav"
       }
-     
     ],
     "primary": {
       "type": "button",
