@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "maple",
+  "theme": "aspen",
   "name": "Harness",
   "colors": {
     "primary": "#00ADE4",
@@ -245,7 +245,9 @@
                   "docs/ai-test-automation",
                   {
                     "group": "New to AI Test Automation",
-                    "pages": ["docs/ai-test-automation/get-started/overview"]
+                    "pages": [
+                      "docs/ai-test-automation/get-started/overview"
+                    ]
                   },
                   {
                     "group": "Best Practices & Resources",
@@ -282,9 +284,16 @@
                       "docs/artifact-registry/use-artifact-registry/manage-registries",
                       "docs/artifact-registry/use-artifact-registry/manage-artifacts"
                     ]
+                  },
+                  {
+                    "group": "API Reference test",
+                    "openapi": [
+                      "https://app.harness.io/prod1/har/swagger.json"
+                    ]
                   }
                 ]
               },
+
               {
                 "anchor": "API Reference",
                 "icon": "code",
@@ -293,7 +302,6 @@
                     "group": "Artifact",
                     "pages": [
                       "api-reference/artifact/list-all-artifacts",
-                      "api-reference/artifact/list-all-artifacts-1",
                       "api-reference/artifact/artifact-detail-component-view",
                       "api-reference/artifact/artifact-detail-deployment-view",
                       "api-reference/artifact/artifact-details"
@@ -746,7 +754,7 @@
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg",
-    "pages": ["index"]
+      "pages": ["index"]
   },
   "navbar": {
     "links": [
@@ -758,6 +766,7 @@
         "label": "Sign up",
         "href": "https://app.harness.io/auth/#/signup?utm_source=harness_io&utm_medium=cta&utm_campaign=platform&utm_content=main_nav"
       }
+     
     ],
     "primary": {
       "type": "button",
