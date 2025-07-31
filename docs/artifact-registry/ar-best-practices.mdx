@@ -1,7 +1,6 @@
 ---
 title: Best Practices
 description: Learn how to name and structure artifact registries for clarity, consistency, and simpler governance.
-sidebar_position: 10
 ---
 
 Harness Artifact Registry provides centralized management for Docker, Helm, Maven, NPM, Python, and other artifact types. This guide outlines **naming conventions**, **scope selection**, and **governance strategies** to help you build a scalable registry structure.
@@ -9,9 +8,9 @@ Harness Artifact Registry provides centralized management for Docker, Helm, Mave
 ## Why naming matters
 Registry names must be globally unique across your Harness account—regardless of scope (account, org, or project). **Reusing names like `docker-dev` in multiple scopes is not allowed**.
 
-:::tip naming and scoping benefits
+<Tip>
 Following consistent naming and scoping practices avoids registry sprawl and supports better collaboration, access control, and automation.
-:::
+</Tip>
 
 ---
 
@@ -48,9 +47,9 @@ Use this format to ensure global uniqueness and clarity: `<scope>-<team>-<packag
 - `api`, `frontend`, `backend` (too generic)
 - `proj-frontend-user-dashboard-components-npm-dev` (overly long)
 
-:::tip registry name
+<Tip>
 Your registry name must start with a letter and can only contain lowercase alphanumerics, `_`, `.` and `-`, and **must be unique to your Harness Account**.
-:::
+</Tip>
 
 ---
 
@@ -77,9 +76,9 @@ Use upstream proxies at **account or org level** to:
 - Improve performance and reliability.
 - Apply centralized scanning policies.
 
-:::tip upstream proxy usage
+<Tip>
 The upstream proxy is essential for caching open-source dependencies. During a build, if a required dependency is not already cached, it is retrieved from a public repository and stored in the Upstream Proxy artifact tab. This ensures continuous availability, even if the source repository (e.g. Docker Hub or Maven Central) experiences downtime. Harness’s caching mechanism enhances reliability and efficiency by reducing dependency on external services and safeguarding access to critical artifacts.
-:::
+</Tip>
 
 ### Proxy registry name guidance 
 - For account-wide proxies, a team name is **not** required in the registry name.
