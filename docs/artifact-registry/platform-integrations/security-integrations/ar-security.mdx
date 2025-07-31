@@ -4,12 +4,9 @@ sidebar_position: 20
 sidebar_label: Security Scanners
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 This guide explains how to configure and review security scanners in your Harness Artifact Registry.
 
-:::info Default Project-Level Scanner
+<Note>
 The security scanner pipeline operates within a default project context, regardless of the registry's scope level (Account, Organization, or Project). This section explains the project requirements for each registry scope.
 
 ### Project-Level Registry
@@ -29,7 +26,7 @@ For registries created at the account level:
 1. Locate the "default" organization (automatically created with your account)
 2. Create a project named `default_project` within the "default" organization
 3. The scanner pipeline will use this project for all account-level registry scans
-:::
+</Note>
 
 ## Configuring Security Scanners
 Follow these steps to set up automated security scanning for your container images. This configuration will enable vulnerability detection and generate detailed reports each time you push a new image to your registry.

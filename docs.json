@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "aspen",
+  "theme": "mint",
   "name": "Harness",
   "colors": {
     "primary": "#00ADE4",
@@ -290,14 +290,54 @@
                   {
                     "group": "Use Artifact Registry",
                     "pages": [
-                      "docs/artifact-registry/use-artifact-registry/manage-registries",
-                      "docs/artifact-registry/use-artifact-registry/manage-artifacts"
+                      {
+                        "group": "Manage Registries",
+                        "pages": [
+                          "docs/artifact-registry/manage-registries/create-registry",
+                          "docs/artifact-registry/manage-registries/upstream-proxy",
+                          "docs/artifact-registry/manage-registries/client-setup",
+                          "docs/artifact-registry/manage-registries/configure-registry",
+                          "docs/artifact-registry/manage-registries/delete-registry"                      
+                        ]
+                      },
+                      {
+                        "group": "Manage Artifacts",
+                        "pages": [
+                          "docs/artifact-registry/manage-artifacts/artifact-management",
+                          "docs/artifact-registry/manage-artifacts/find-artifacts",
+                          "docs/artifact-registry/manage-artifacts/artifact-details"
+                        ]
+                      },
+                      {
+                        "group": "Platform Integrations",
+                        "pages": [
+                          "docs/artifact-registry/platform-integrations/cd-ar-integrations",
+                          "docs/artifact-registry/platform-integrations/ci-ar-integrations",
+                          {
+                            "group": "Security Integrations",
+                            "pages": [
+                              "docs/artifact-registry/platform-integrations/security-integrations/ssd-ar-integrations",
+                              "docs/artifact-registry/platform-integrations/security-integrations/ar-security"                              
+                            ]
+                          }
+                        ]
+                      },
+                      "docs/artifact-registry/ar-webhooks"
                     ]
                   },
+                  
                   {
-                    "group": "API Reference test",
-                    "openapi": [
-                      "https://app.harness.io/prod1/har/swagger.json"
+                    "group": "Troubleshooting & Resources",
+                    "pages": [
+                      "docs/artifact-registry/whats-supported",
+                      "docs/artifact-registry/ar-best-practices",
+                      {
+                        "group": "Authorization & Authentication",
+                        "pages": [
+                          "docs/artifact-registry/troubleshooting/authorization/auth-401-errors",
+                          "docs/artifact-registry/troubleshooting/authorization/auth-403-errors"
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -306,26 +346,8 @@
               {
                 "anchor": "API Reference",
                 "icon": "code",
-                "pages": [
-                  {
-                    "group": "Artifact",
-                    "pages": [
-                      "api-reference/artifact/list-all-artifacts",
-                      "api-reference/artifact/artifact-detail-component-view",
-                      "api-reference/artifact/artifact-detail-deployment-view",
-                      "api-reference/artifact/artifact-details"
-                    ]
-                  },
-                  {
-                    "group": "Docker Artifacts",
-                    "pages": [
-                      "api-reference/docker-artifacts/describe-docker-artifact-detail",
-                      "api-reference/docker-artifacts/describe-docker-artifact-integration-detail",
-                      "api-reference/docker-artifacts/describe-docker-artifact-layers",
-                      "api-reference/docker-artifacts/describe-docker-artifact-manifest",
-                      "api-reference/docker-artifacts/describe-docker-artifact-manifests"
-                    ]
-                  }
+                "openapi": [
+                  "https://app.harness.io/prod1/har/swagger.json"
                 ]
               }
             ]
