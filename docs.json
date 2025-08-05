@@ -120,7 +120,69 @@
                 "icon": "git-alt",
                 "pages": [
                   "docs/code-repository",
-                  "docs/code-repository/code-supported"
+                  "docs/code-repository/code-supported",
+                  {
+                    "group": "Config Repos",
+                    "pages": [
+                      "docs/code-repository/config-repos/archive-repo",
+                      "docs/code-repository/config-repos/create-repo",
+                      "docs/code-repository/config-repos/delete-repo",
+                      "docs/code-repository/config-repos/favorite-repo",
+                      "docs/code-repository/config-repos/import-repo",
+                      "docs/code-repository/config-repos/mirror",
+                      "docs/code-repository/config-repos/rules",
+                      "docs/code-repository/config-repos/security",
+                      "docs/code-repository/config-repos/webhooks"
+                    ]
+                  },
+                  {
+                    "group": "Get Started",
+                    "pages": [
+                      "docs/code-repository/get-started/cr-subscription-mgmt",
+                      "docs/code-repository/get-started/key-concepts",
+                      "docs/code-repository/get-started/onboarding-guide",
+                      "docs/code-repository/get-started/overview"
+                    ]
+                  },
+                  {
+                    "group": "Integrations",
+                    "pages": [
+                      "docs/code-repository/integrations/jira-integration"
+                    ]
+                  },
+                  {
+                    "group": "Pipelines",
+                    "pages": [
+                      "docs/code-repository/pipelines/code-triggers",
+                      "docs/code-repository/pipelines/codebase-from-harness-code"
+                    ]
+                  },
+                  {
+                    "group": "Pull Requests",
+                    "pages": [
+                      "docs/code-repository/pull-requests/aida-code-pr",
+                      "docs/code-repository/pull-requests/change-target-branch",
+                      "docs/code-repository/pull-requests/create-pr",
+                      "docs/code-repository/pull-requests/delete-branch",
+                      "docs/code-repository/pull-requests/merge-pr",
+                      "docs/code-repository/pull-requests/prs-of-interest",
+                      "docs/code-repository/pull-requests/revert-pr",
+                      "docs/code-repository/pull-requests/review-pr"
+                    ]
+                  },
+                  {
+                    "group": "Work in Repos",
+                    "pages": [
+                      "docs/code-repository/work-in-repos/branch",
+                      "docs/code-repository/work-in-repos/clone-repos",
+                      "docs/code-repository/work-in-repos/commit",
+                      "docs/code-repository/work-in-repos/git-lfs",
+                      "docs/code-repository/work-in-repos/keyword-search",
+                      "docs/code-repository/work-in-repos/labels",
+                      "docs/code-repository/work-in-repos/semantic-search",
+                      "docs/code-repository/work-in-repos/tag"
+                    ]
+                  }
                 ]
               },
               {
