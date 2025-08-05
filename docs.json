@@ -271,9 +271,6 @@
           {
             "dropdown": "Artifact Registry",
             "icon": "box",
-            "styling": {
-              "eyebrows": "breadcrumbs"
-            },
             "anchors": [
               {
                 "anchor": "Artifact Registry",
